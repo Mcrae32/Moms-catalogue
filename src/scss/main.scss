@@ -111,7 +111,12 @@
 }
 
 a {
+    color: #3273DC;
     transition-duration: 0.3s;
+
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
 }
 
 body {
@@ -199,7 +204,7 @@ body {
     box-shadow: var(--box-shadow-container);
 
     @media (max-width: 1023px) {
-        min-height: calc(100vh - 0px);
+        min-height: calc(100vh - 20px);
         padding-bottom: 66px;
     }
 
@@ -260,4 +265,22 @@ body {
 .filter__count {
     @extend %tpl_p;
     color: var(--color-black-60);
+}
+
+.delete {
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 15px;
+    background-color: #e5e5e5;
+
+    &::before, &::after {
+        background-color: #333333;
+    }
+
+    &::before {
+        height: 2px;
+    }
+    &::after {
+        width: 2px;
+    }
 }
