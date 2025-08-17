@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="modal is-active">
+  <div class="modal"> /*is-active*/
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
@@ -50,6 +50,12 @@
 </template>
 
 <style lang="scss" scoped>
+  .modal {
+    @media (max-width: 1023px) {
+      display: none;
+      opacity: 0;
+    }
+  }
   .modal-background {
     background-color: #00000030;
   }
