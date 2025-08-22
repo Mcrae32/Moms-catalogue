@@ -6,8 +6,7 @@
   import NavigationTablet from './components/NavigationTablet.vue'
   import Filter from './components/Filter.vue'
   import ProductCard from './components/ProductCard.vue'
-  import LogoMobile from './components/LogoMobile.vue'
-  import ModalView from './components/ModalView.vue'
+  import LogoMobile from './components/LogoMobile.vue'  
 </script>
 
 <template>
@@ -53,16 +52,17 @@
               class="grid"
               :class="gridStateClass"
             >
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
+              <ProductCard 
+                v-for="(product, idx) in productAssortment"
+                :id="idx"
+                :nameProduct="product.nameProduct"
+                :weight="product.weight"
+                :cardReviews="product.cardReviews"
+                :cardPrice="product.cardPrice"
+                :cardImage="product.cardImage"
+                :modalReviews="product.modalReviews"
+                :modalState="product.modalState"
+              />              
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@
     <NavigationTablet />
   </div>
 
-  <ModalView />
+  
 </template>
 
 <script>
@@ -79,6 +79,39 @@ export default {
   data() {
     return {
       winWidth: window.innerWidth,
+      productAssortment: [
+        {
+          id: 0,
+          nameProduct: 'Продукт копчено-варёный из свинины',
+          weight: 250,
+          cardReviews: 'Описание карточки, состава',
+          cardPrice: 2000,
+          cardImage: '/src/assets/images/assortment/1.png',
+          modalReviews: 'Это настоящая гастрономическая гордость, воплощение многовековых традиций и современных технологий. Каждый срез колбасы, будь то нежная докторская, пикантная сервелат или копчёная салями, – это маленькое произведение искусства.',
+          modalState: true,
+        },
+        {
+          id: 1,
+          nameProduct: 'Свинина прессованная. Продукт варено-копченый из свинины',
+          weight: 350,
+          cardReviews: 'Описание карточки и состава',
+          cardPrice: 2500,
+          cardImage: '/src/assets/images/assortment/2.png',
+          modalReviews: '',
+          modalState: false,
+        },
+        {
+          id: 2,
+          nameProduct: 'Буженина. Продукт копчено-запеченая из свинины',
+          weight: 350,
+          cardReviews: 'Описание карточки и состава',
+          cardPrice: 2500,
+          cardImage: '/src/assets/images/assortment/1.png',
+          modalReviews: '',
+          modalState: false,
+        },
+        
+      ]
     }
   },
   computed: {
@@ -89,7 +122,10 @@ export default {
   methods: {
     handleResize() {
       this.winWidth = widndow.innerWidth;
-    }
+    },
+    // modalOpen() {
+    //   openModal
+    // }
   },
   mounted() {
     window.onresize = () => {

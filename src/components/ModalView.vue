@@ -1,10 +1,46 @@
-<script setup>
-
+<script>
+  export default {
+    emits: ['closeModal'],
+    props: {
+      state: {
+        type: Boolean,
+      },
+      id: {
+        type: String,
+      },
+      name: {
+        type: String,
+      },
+      weight: {
+        type: Number,
+      },
+      price: {
+        type: Number,
+      },
+      reviews: {
+        type: String,
+      }
+    },
+    data() {
+        return {
+            state: this.state
+        }
+    },
+    methods: {
+        // open() {
+        //     this.stateKey = !this.stateKey;
+        // }
+    }
+};
 </script>
 
 <template>
-  <div class="modal"> /*is-active*/
-    <div class="modal-background"></div>
+  <div 
+    v-if="state"
+    class="modal"
+    :class="state ? 'is-active' : ''"
+    >
+    <div class="modal-background" @click="$emit('closeModal')"></div>
     <div class="modal-card">
       <header class="modal-card-head">
         <div class="modal-card-head__slider">
@@ -12,10 +48,10 @@
         </div>
         <div class="modal-card-head__text">
           <div class="modal-card-head__right-block">
-            <p class="modal-card-title">Название позиции</p>
-            <p class="madal-card-weight">250 - 500 г</p>
+            <p class="modal-card-title">{{ name }}</p>
+            <p class="madal-card-weight">{{ weight }} г</p>
             <div class="modal-card-price product-price price-action">
-              <p class="product-price__price">2000 ₽</p>
+              <p class="product-price__price">{{ price }} ₽</p>
               <span class="product-price__subprice">Акция</span>
             </div>
             <a class="modal-card-head__link" href="/">Перейти в карточку товара</a>
@@ -26,7 +62,7 @@
       <section class="modal-card-body reviews">
         <div class="reviews__block">
           <h6>Описание</h6>
-          <p>Это настоящая гастрономическая гордость, воплощение многовековых традиций и современных технологий. Каждый срез колбасы, будь то нежная докторская, пикантная сервелат или копчёная салями, – это маленькое произведение искусства.</p>
+          <p>{{ reviews }}</p>
         </div>
         <div class="reviews__block">
           <h6>Состав</h6>

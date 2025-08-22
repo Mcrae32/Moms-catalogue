@@ -1,25 +1,81 @@
 <script setup>
+    import ModalView from '../components/ModalView.vue'
+</script>
 
+<script>
+export default {
+    // emits: ['openModal'],
+    props: {
+        id: {
+            type: Number,
+        },
+        nameProduct: {
+            type: String,
+        }, 
+        weight: {
+            type: Number,
+        },
+        cardReviews: {
+            type: String,
+        },
+        cardPrice: {
+            type: Number,
+        },
+        cardImage: {
+            type: String,
+        },
+        modalReviews: {
+            type: String,
+        },
+        modalState: {
+            type: Boolean,
+        }
+    },
+    methods: {
+        openModal() {
+            this.stateModal = !this.stateModal
+        }
+    },
+    data() {
+        return {
+            stateModal: this.modalState
+        }
+    }
+}
 </script>
 
 <template>
-    <div class="product-card c-a-r-d cell">
+    <div 
+        class="product-card c-a-r-d cell"
+        
+        >
         <div class="card__img">
-            <button class="quick-view">Быстрый просмотр</button>
-            <img src="/src/assets/images/assortment/1.png" alt="Продукт копчено-варёный из свинины.">
+            <button
+             class="quick-view"
+             @click="openModal"
+            >Быстрый просмотр</button>
+            <img :src="cardImage" :alt="nameProduct">
         </div>
         <div class="card__content">
-            <p class="card__title">Продукт копчено-варёный из свинины.</p>
+            <p class="card__title">{{ nameProduct }}</p>
             <div class="card__info">
-                <p class="card__weight">250 г</p>
-                <p class="card__reviews">Описание карточки, состава</p>
+                <p class="card__weight">{{ weight }} г</p>
+                <p class="card__reviews">{{ cardReviews }}</p>
             </div>
             <div class="card__footer">
-                <span class="card__price">2000 &nbsp;₽</span>
+                <span class="card__price">{{ cardPrice }} &nbsp;₽</span>
                 <button class="card__button"></button>
             </div>
         </div>
     </div>
+    <ModalView 
+        :state="modalState"
+        :id="id"
+        :name="nameProduct"
+        :weight="weight"
+        :price="cardPrice"
+        :reviews="modalReviews"
+    />
 </template>
 
 <style lang="scss" scoped>
@@ -151,7 +207,5 @@
         font-size: 16px;
         font-weight: bold;
         color: #333333;
-    }
-    .card__button {
     }
 </style>
