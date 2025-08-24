@@ -52,26 +52,25 @@
               class="grid"
               :class="gridStateClass"
             >
-              <ProductCard 
-                v-for="(product, idx) in productAssortment"
-                :id="idx"
+              <product-card
+                v-for="product in productAssortment"
+                :key="product.id"
+                :id="product.id"                
                 :nameProduct="product.nameProduct"
                 :weight="product.weight"
                 :cardReviews="product.cardReviews"
                 :cardPrice="product.cardPrice"
                 :cardImage="product.cardImage"
-                :modalReviews="product.modalReviews"
                 :modalState="product.modalState"
-              />              
+                @openModal="modalOpen"             
+              ></product-card>
             </div>
           </div>
         </div>
       </div>
     </div>
     <NavigationTablet />
-  </div>
-
-  
+  </div>  
 </template>
 
 <script>
@@ -88,7 +87,7 @@ export default {
           cardPrice: 2000,
           cardImage: '/src/assets/images/assortment/1.png',
           modalReviews: 'Это настоящая гастрономическая гордость, воплощение многовековых традиций и современных технологий. Каждый срез колбасы, будь то нежная докторская, пикантная сервелат или копчёная салями, – это маленькое произведение искусства.',
-          modalState: true,
+          modalState: false,
         },
         {
           id: 1,
@@ -109,8 +108,7 @@ export default {
           cardImage: '/src/assets/images/assortment/1.png',
           modalReviews: '',
           modalState: false,
-        },
-        
+        },        
       ]
     }
   },
@@ -123,8 +121,15 @@ export default {
     handleResize() {
       this.winWidth = widndow.innerWidth;
     },
-    // modalOpen() {
-    //   openModal
+    modalOpen(id) {
+      const productItem = this.productAssortment.find(productItem => productItem.id === id);
+      productItem.modalState = true;
+      // console.log('id -', id)
+      console.log('productItem -', productItem)
+    },
+    // modalClose(id) {
+    //   const productItem = this.productAssortment.find(productItem => productItem.id === id);
+    //   productItem.modalState = false;
     // }
   },
   mounted() {

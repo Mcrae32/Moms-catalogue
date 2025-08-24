@@ -4,11 +4,11 @@
 
 <script>
 export default {
-    // emits: ['openModal'],
+    emits: ['openModal'],
     props: {
         id: {
             type: Number,
-        },
+        },        
         nameProduct: {
             type: String,
         }, 
@@ -32,9 +32,10 @@ export default {
         }
     },
     methods: {
-        openModal() {
-            this.stateModal = !this.stateModal
-        }
+        // openModal(id) {
+            
+        //     console.log('id -', id)
+        // }
     },
     data() {
         return {
@@ -46,13 +47,12 @@ export default {
 
 <template>
     <div 
-        class="product-card c-a-r-d cell"
-        
+        class="product-card c-a-r-d cell"        
         >
         <div class="card__img">
             <button
              class="quick-view"
-             @click="openModal"
+             @click="$emit('openModal', id)"
             >Быстрый просмотр</button>
             <img :src="cardImage" :alt="nameProduct">
         </div>
@@ -74,7 +74,7 @@ export default {
         :name="nameProduct"
         :weight="weight"
         :price="cardPrice"
-        :reviews="modalReviews"
+        
     />
 </template>
 

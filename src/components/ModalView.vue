@@ -2,11 +2,11 @@
   export default {
     emits: ['closeModal'],
     props: {
-      state: {
+      stateModal: {
         type: Boolean,
       },
       id: {
-        type: String,
+        type: Number,
       },
       name: {
         type: String,
@@ -17,13 +17,10 @@
       price: {
         type: Number,
       },
-      reviews: {
-        type: String,
-      }
     },
     data() {
         return {
-            state: this.state
+            modalState: this.stateModal
         }
     },
     methods: {
@@ -36,9 +33,9 @@
 
 <template>
   <div 
-    v-if="state"
+    v-if="modalState"
     class="modal"
-    :class="state ? 'is-active' : ''"
+    :class="modalState ? 'is-active' : ''"
     >
     <div class="modal-background" @click="$emit('closeModal')"></div>
     <div class="modal-card">
