@@ -111,7 +111,7 @@
 }
 
 a {
-    color: #3273DC;
+    color: var(--color-link-default);
     transition-duration: 0.3s;
 
     &:hover, &:focus {
@@ -122,7 +122,7 @@ a {
 body {
     font-family: var(--base-fontfamily-text);
     color: var(--color-black-70);        
-    @extend%tpl_p;
+    font-size: 16px; font-weight: normal;
 }
 
 #app {

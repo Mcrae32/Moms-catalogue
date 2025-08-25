@@ -1,32 +1,40 @@
 <script setup>
-
+    import { RouterLink } from 'vue-router'
 </script>
 
 <template>
   <nav>
-    <button class="btn active">
+    <!-- <button class="btn active">
         <div class="btn__wrap">
             <i class="btn__icon ri-home-7-line"></i> Главная
         </div>
-    </button>
-    <button class="btn">
+    </button> -->
+    <RouterLink to="/" class="btn">
         <div class="btn__wrap">
-            <i class="btn__icon ri-book-open-line"></i> Ассортимент
+            <i class="btn__icon ri-book-open-line"></i> 
+            Ассортимент
         </div>
-    </button>
-    <button class="btn">
+    </RouterLink>
+    <RouterLink to="/about" class="btn">
         <div class="btn__wrap">
-            <i class="btn__icon ri-building-2-line"></i> О нас
+            <i class="btn__icon ri-building-2-line"></i> 
+            О нас
         </div>
-    </button>
-    <button class="btn">
+    </RouterLink>
+    <!-- <button class="btn">
         <div class="btn__wrap">
             <i class="btn__icon ri-contacts-line"></i> Контакты
         </div>
-    </button>    
+    </button>     -->
   </nav>
 </template>
-
+<script>
+    export default {
+        components: {
+            RouterLink
+        }
+    }
+</script>
 <style lang="scss" scoped>
     nav {
         display: flex;
@@ -35,15 +43,17 @@
         padding: 16px;
     }
     .btn {
-        // transition: all 0.5s ease-in-out 0.5s;       
+        // transition: all 0.5s ease-in-out 0.5s; 
+        color: #333333;   
+        text-decoration: none;   
 
         .btn__wrap {
             display: flex;
             align-items: center;
             gap: 10px;
             font-weight: 500;
-            font-size: 14px;
-            color: #333333;
+            font-size: 14px;   
+            color: #333333;         
             height: 48px;
             width: 172px;
             border-radius: 37px;
@@ -66,6 +76,14 @@
                 &.ri-book-open-line {
                     padding-bottom: 0;
                 }
+            }
+
+            a {
+                
+            }
+
+            a:hover, a:focus {
+                text-decoration: none;
             }
         }
 
@@ -94,7 +112,7 @@
         }
     }
 
-    .btn.active {   
+    .btn.router-link-active {   
         position: relative;
         z-index: 1;
     

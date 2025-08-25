@@ -1,43 +1,32 @@
 <script>
   export default {
-    emits: ['closeModal'],
+    emits: ['close-modal'],
     props: {
-      stateModal: {
-        type: Boolean,
-      },
-      id: {
-        type: Number,
-      },
-      name: {
-        type: String,
-      },
-      weight: {
-        type: Number,
-      },
-      price: {
-        type: Number,
-      },
+      stateModal: { type: Boolean, required: true, },
+      id: { type: Number, },
+      name: { type: String, },
+      weight: { type: Number, },
+      price: { type: Number, },
+      reviews: { type: String, },
     },
     data() {
         return {
-            modalState: this.stateModal
+          modalState: this.stateModal
         }
     },
     methods: {
-        // open() {
-        //     this.stateKey = !this.stateKey;
-        // }
+      
     }
 };
 </script>
 
 <template>
   <div 
-    v-if="modalState"
+    v-if="stateModal"
     class="modal"
-    :class="modalState ? 'is-active' : ''"
+    :class="stateModal ? 'is-active' : ''"
     >
-    <div class="modal-background" @click="$emit('closeModal')"></div>
+    <div class="modal-background" @click="$emit('close-modal')"></div>
     <div class="modal-card">
       <header class="modal-card-head">
         <div class="modal-card-head__slider">
@@ -53,7 +42,11 @@
             </div>
             <a class="modal-card-head__link" href="/">Перейти в карточку товара</a>
           </div>
-          <button class="delete" aria-label="close"></button>
+          <button 
+            class="delete" 
+            aria-label="close"
+            @click="$emit('close-modal')"
+            ></button>
         </div>
       </header>
       <section class="modal-card-body reviews">

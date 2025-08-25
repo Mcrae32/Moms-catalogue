@@ -2,49 +2,6 @@
     import ModalView from '../components/ModalView.vue'
 </script>
 
-<script>
-export default {
-    emits: ['openModal'],
-    props: {
-        id: {
-            type: Number,
-        },        
-        nameProduct: {
-            type: String,
-        }, 
-        weight: {
-            type: Number,
-        },
-        cardReviews: {
-            type: String,
-        },
-        cardPrice: {
-            type: Number,
-        },
-        cardImage: {
-            type: String,
-        },
-        modalReviews: {
-            type: String,
-        },
-        modalState: {
-            type: Boolean,
-        }
-    },
-    methods: {
-        // openModal(id) {
-            
-        //     console.log('id -', id)
-        // }
-    },
-    data() {
-        return {
-            stateModal: this.modalState
-        }
-    }
-}
-</script>
-
 <template>
     <div 
         class="product-card c-a-r-d cell"        
@@ -52,7 +9,7 @@ export default {
         <div class="card__img">
             <button
              class="quick-view"
-             @click="$emit('openModal', id)"
+             @click="openModal"
             >Быстрый просмотр</button>
             <img :src="cardImage" :alt="nameProduct">
         </div>
@@ -69,14 +26,43 @@ export default {
         </div>
     </div>
     <ModalView 
-        :state="modalState"
+        :stateModal="stateModal"
         :id="id"
         :name="nameProduct"
         :weight="weight"
         :price="cardPrice"
-        
+        :reviews="cardReviews"
+        @close-modal="closeModal"
     />
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            stateModal: this.modalState
+        }
+    },
+    props: {
+        id: { type: Number, },        
+        nameProduct: { type: String, }, 
+        weight: { type: Number, },
+        cardReviews: { type: String, },
+        cardPrice: { type: Number, },
+        cardImage: { type: String, },
+        modalState: { type: Boolean, required: true, }
+    },
+    methods: {
+        openModal(id) {
+            this.stateModal = !this.stateModal;
+        },
+        closeModal(id) {
+            this.stateModal = !this.stateModal;
+        }
+    },
+    
+}
+</script>
 
 <style lang="scss" scoped>
     p{
