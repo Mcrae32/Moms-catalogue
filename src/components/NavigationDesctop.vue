@@ -57,7 +57,7 @@
             height: 48px;
             width: 172px;
             border-radius: 37px;
-            transition: all 0.5s ease-in-out 0.5s;
+            transition: all 0.5s ease-in-out 0s;
 
             i.btn__icon {
                 width: 48px;

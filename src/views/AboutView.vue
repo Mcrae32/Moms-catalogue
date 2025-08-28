@@ -1,5 +1,6 @@
 <script setup>
   import Breadcrumb from '@/components/Breadcrumb.vue';
+  import PageSlider from '@/components/PageSlider.vue';
 </script>
 <template>
   <Breadcrumb />
@@ -26,7 +27,7 @@
         </div>
         <div class="product-text__block">
           <h3>Вес/объем</h3>
-          <p>250 - 500 г</p>
+          <p>250 - 500&nbsp;г</p>
         </div>
         <div class="product-text__block">
           <h3>Условия хранения</h3>
@@ -34,23 +35,46 @@
         </div>
       </div>
     </div>
+    <div class="product-reviews__column">
+      <PageSlider />
+    </div>
   </div>
 </template>
 <script>
 export default {
   components: {
-    Breadcrumb,
+    Breadcrumb, PageSlider
   },
 }
 </script>
 <style lang="scss" scoped>
   .content__product-reviews {
-    .content h1 {
+    display: flex;
+    gap: 32px;
+
+    // @media (max-width: 1199px) {
+    //   flex-direction: column;
+    // }
+
+    h1 {
       font-size: 2em;
+      text-wrap: pretty;
+
+      @media (max-width: 1199px) {
+        font-size: 1.8em;
+      }
     }
+
     .product-reviews__weight {
       margin-bottom: 2em;
     }
+  }
+
+  .product-reviews__column {
+
+    // &:first-child {
+    //   min-width: 50%;
+    // }
   }
   
   .product-reviews-price {
@@ -99,14 +123,17 @@ export default {
       color: #4BC6EF;
     }
   }
-  
-  .product-reviews__text {
-  }
-  .product-text {
-  }
+
   .product-text__block {
+    margin-bottom: 16px;
+
     h3 {
       font-size: 16px; font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    p {
+      line-height: 120%;
     }
   }
 </style>

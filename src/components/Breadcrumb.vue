@@ -22,6 +22,7 @@ export default {
 
 <style lang="scss" scoped>
     .breadcrumb {
+        margin-bottom: 24px;
         ul {
             margin-inline-start: 0;
 

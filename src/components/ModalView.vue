@@ -145,6 +145,7 @@
     color: #ffffff;
     background-color: #4BC6EF;
     padding: 6px 8px;
+    margin-bottom: 0 !important;
     border-radius: 7px;
     position: relative;    
 
