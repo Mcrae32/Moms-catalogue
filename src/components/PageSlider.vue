@@ -1,23 +1,40 @@
 <script>
-  export default {
-    emits: ['close-modal'],
-    props: {
-      stateModal: { type: Boolean, required: true, },
-      id: { type: Number, },
-    },
-    data() {
-        return {
-          modalState: this.stateModal
-        }
-    },
-    methods: {
-      
-    }
-};
+    import { Swiper, SwiperSlide } from 'swiper/vue';
+    import 'swiper/css'
+
+    export default {
+        components: {
+            Swiper, SwiperSlide,
+        },
+        emits: ['close-modal'],
+        props: {
+            stateModal: { type: Boolean, required: true, },
+            id: { type: Number, },
+        },
+        data() {
+            return {
+            modalState: this.stateModal
+            }
+        },
+        methods: {
+        
+        },
+        setup() {
+            const onSwiper = (swiper) => {
+                console.log(swiper);
+            };
+            const onSlideChange = () => {
+                console.log('slide change');
+            };
+            return {
+                onSlideChange, onSwiper,
+            };
+        },
+    };
 </script>
 
 <template>
-    <div class="product-rewiews__slider slider">
+    <!-- <div class="product-rewiews__slider slider">
         <div class="slider__show-container">
             <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
         </div>
@@ -31,6 +48,41 @@
             <div class="prew__image">
                 <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
             </div>
+        </div>
+    </div> -->
+    
+    <div class="product-rewiews__slider slider">
+        <div class="slider__show-container">
+            <swiper
+                :slides-per-view="1"
+                :space-between="30"
+                @swiper="onSwiper"
+                @slideChange="onSlideChange"
+                :modules="modules"
+            >
+                <swiper-slide>
+                    <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
+                </swiper-slide>
+                <swiper-slide>
+                    <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
+                </swiper-slide>
+                <swiper-slide>
+                    <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
+                </swiper-slide>                                
+            </swiper>
+        </div>
+        <div class="slider__prew-container prew">
+            <!-- <div class="prew__image is-action">
+                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
+            </div>
+            <div class="prew__image">
+                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
+            </div>
+            <div class="prew__image">
+                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
+            </div> -->
+            
+            
         </div>
     </div>
 </template>
