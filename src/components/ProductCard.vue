@@ -5,7 +5,7 @@
 <template>
     <div 
         class="product-card c-a-r-d cell"        
-        >
+    >
         <div class="card__img">
             <button
              class="quick-view"

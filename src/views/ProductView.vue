@@ -3,6 +3,7 @@
   import PageSlider from '@/components/PageSlider.vue';
 </script>
 <template>
+  <h2>{{ id }}</h2>
   <Breadcrumb />
   <div class="content__product-reviews product-reviews">
     <div class="product-reviews__column">
@@ -42,6 +43,9 @@
 </template>
 <script>
 export default {
+  props: {
+    id: { type: Number, },
+  },
   components: {
     Breadcrumb, PageSlider
   },
@@ -68,13 +72,6 @@ export default {
     .product-reviews__weight {
       margin-bottom: 2em;
     }
-  }
-
-  .product-reviews__column {
-
-    // &:first-child {
-    //   min-width: 50%;
-    // }
   }
   
   .product-reviews-price {
