@@ -14,7 +14,7 @@ const router = createRouter({
         {
           // path: ':assortmentId?',
           path: '/assortment0',
-          component: ProductView,
+          component: ProductView,          
           props: true,
         }
       ],
@@ -25,8 +25,14 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/!AboutView.vue'),
+      component: () => import('../views/ProductView.vue'),
     },
+    // {
+    //   path: '/assortment0',
+    //   name: 'assortment0',
+    //   props: true,
+    //   component: ProductView,
+    // },
   ],
 })
 

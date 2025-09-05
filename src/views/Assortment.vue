@@ -26,8 +26,8 @@
           v-for="product in productAssortment"
           :key="product.id"
         >
-          <RouterLink :to="'/assortment' + product.id">
-          <!-- <RouterLink :to="/assortment"> -->
+          <!-- <RouterLink :to="'/assortment' + product.id"> -->
+          <RouterLink to="/assortment0">
             <product-card
               :id="product.id"                
               :nameProduct="product.nameProduct"

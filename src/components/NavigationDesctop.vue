@@ -9,7 +9,7 @@
             <i class="btn__icon ri-home-7-line"></i> Главная
         </div>
     </button> -->
-    <RouterLink to="/" class="btn">
+    <RouterLink to="assortment" class="btn">
         <div class="btn__wrap">
             <i class="btn__icon ri-book-open-line"></i> 
             Ассортимент

@@ -285,6 +285,14 @@ body {
     }
 }
 
+.product-item {
+    & > a:hover, 
+    & > a:focus {
+        text-decoration: none !important;
+    }
+}
+
+
 // .grid {
 //     .product-item {
 //         & > a {
