@@ -286,8 +286,8 @@ body {
 }
 
 .product-item {
-    & > a:hover, 
-    & > a:focus {
+    & > div > a:hover, 
+    & > div > a:focus {
         text-decoration: none !important;
     }
 }

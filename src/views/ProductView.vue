@@ -1,26 +1,26 @@
 <script setup>
   import Breadcrumb from '@/components/Breadcrumb.vue';
-  import PageSlider from '@/components/PageSlider.vue';
+  // import PageSlider from '@/components/PageSlider.vue';
 </script>
 <template>
-  <h2>{{ id }}</h2>
+  <template v-if="productId">
   <Breadcrumb />
   <div class="content__product-reviews product-reviews">
     <div class="product-reviews__column">
-      <h1>Название позиции, 250 - 500 г</h1>
-      <p class="product-reviews__weight">250 - 500 г</p>
+      <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
+      <p class="product-reviews__weight">{{ productItem.weight }} г</p>
       <div class="product-reviews-price product-price price-action">
-        <p class="product-price__price">2500 ₽</p>
+        <p class="product-price__price">{{ productItem.cardPrice }} ₽</p>
         <span class="product-reviews__subprice">Акция</span>
       </div>
       <div class="product-reviews__text product-text">
         <div class="product-text__block">
           <h3>Описание</h3>
-          <p>Это настоящая гастрономическая гордость, воплощение многовековых традиций и современных технологий. Каждый срез колбасы, будь то нежная докторская, пикантная сервелат или копчёная салями, – это маленькое произведение искусства.</p>
+          <p>{{ productItem.modalReviews }}</p>
         </div>
         <div class="product-text__block">
           <h3>Состав</h3>
-          <p>Свинина, говядина, курица или даже дичь.</p>
+          <p>{{ productItem.cardReviews }}</p>
         </div>
         <div class="product-text__block">
           <h3>Годен</h3>
@@ -37,17 +37,27 @@
       </div>
     </div>
     <div class="product-reviews__column">
-      <PageSlider />
+      <!-- <PageSlider /> -->
     </div>
   </div>
+  </template>
+  <!-- sdfg -->
 </template>
 <script>
 export default {
-  props: {
-    id: { type: Number, },
-  },
+  inject: ['productAssortment'],
+  props: ['productId'],
   components: {
-    Breadcrumb, PageSlider
+    Breadcrumb
+  },
+  computed: {
+    // productItem() {
+    //   return "1234"
+    // },
+    productItem() {      
+      return this.productAssortment.find(product => product.id == this.productId);
+      // console.log( this.productAssortment.find(product => product.id == this.productId) );
+    }
   },
 }
 </script>

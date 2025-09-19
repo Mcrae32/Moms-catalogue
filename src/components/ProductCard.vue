@@ -1,29 +1,28 @@
 <script setup>
     import ModalView from '../components/ModalView.vue'
+    import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-    <div 
-        class="product-card c-a-r-d cell"        
-    >
+    <div class="product-card c-a-r-d cell">
         <div class="card__img">
-            <button
-             class="quick-view"
-             @click="openModal"
-            >Быстрый просмотр</button>
+            <button class="quick-view" @click="openModal">Быстрый просмотр</button>
             <img :src="cardImage" :alt="nameProduct">
-        </div>
-        <div class="card__content">
-            <p class="card__title">{{ nameProduct }}</p>
-            <div class="card__info">
-                <p class="card__weight">{{ weight }} г</p>
-                <p class="card__reviews">{{ cardReviews }}</p>
+        </div>        
+        <RouterLink :to="'/assortment/' + id" @click="$emit('open-card')">
+        <!-- <RouterLink :to="'/assortment/' + id"> -->
+            <div class="card__content">            
+                <p class="card__title">{{ nameProduct }}</p>
+                <div class="card__info">
+                    <p class="card__weight">{{ weight }} г</p>
+                    <p class="card__reviews">{{ cardReviews }}</p>
+                </div>
+                <div class="card__footer">
+                    <span class="card__price">{{ cardPrice }} &nbsp;₽</span>
+                    <button class="card__button"></button>
+                </div>            
             </div>
-            <div class="card__footer">
-                <span class="card__price">{{ cardPrice }} &nbsp;₽</span>
-                <button class="card__button"></button>
-            </div>
-        </div>
+        </RouterLink>
     </div>
     <ModalView 
         :stateModal="stateModal"
@@ -60,7 +59,7 @@ export default {
             this.stateModal = !this.stateModal;
         }
     },
-    
+    emits: ['open-card'],
 }
 </script>
 

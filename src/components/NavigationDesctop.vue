@@ -9,7 +9,9 @@
             <i class="btn__icon ri-home-7-line"></i> Главная
         </div>
     </button> -->
-    <RouterLink to="assortment" class="btn">
+    <RouterLink to="/assortment" class="btn" @click="$emit('open-card')">
+    <!-- <RouterLink to="/assortment" class="btn" @click="open-card"> -->
+    <!-- <RouterLink to="/assortment" class="btn"> -->
         <div class="btn__wrap">
             <i class="btn__icon ri-book-open-line"></i> 
             Ассортимент
@@ -30,9 +32,17 @@
 </template>
 <script>
     export default {
+        // inject: ['openItem'],
         components: {
             RouterLink
-        }
+        },
+        emits: ['open-card'],
+        // methods: {
+        //     openCard() {
+        //         this.openItem = true;
+        //         console.log("openItem - ", this.openItem);
+        //     }
+        // }
     }
 </script>
 <style lang="scss" scoped>

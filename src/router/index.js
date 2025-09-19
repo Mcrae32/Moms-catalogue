@@ -12,8 +12,7 @@ const router = createRouter({
       alias: '/',
       children: [
         {
-          // path: ':assortmentId?',
-          path: '/assortment0',
+          path: ':productId?',
           component: ProductView,          
           props: true,
         }

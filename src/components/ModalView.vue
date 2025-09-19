@@ -9,14 +9,6 @@
       price: { type: Number, },
       reviews: { type: String, },
     },
-    data() {
-        return {
-          modalState: this.stateModal
-        }
-    },
-    methods: {
-      
-    }
 };
 </script>
 
