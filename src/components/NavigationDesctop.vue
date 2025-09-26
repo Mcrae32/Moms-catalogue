@@ -1,5 +1,6 @@
 <script setup>
     import { RouterLink } from 'vue-router'
+    import {store} from '../store'
 </script>
 
 <template>
@@ -9,8 +10,8 @@
             <i class="btn__icon ri-home-7-line"></i> Главная
         </div>
     </button> -->
-    <RouterLink to="/assortment" class="btn" @click="$emit('open-card')">
-    <!-- <RouterLink to="/assortment" class="btn" @click="open-card"> -->
+    <!-- <RouterLink to="/assortment" class="btn" @click="$emit('open-card')"> -->
+    <RouterLink to="/assortment" class="btn" @click="store.openPosition = false">
     <!-- <RouterLink to="/assortment" class="btn"> -->
         <div class="btn__wrap">
             <i class="btn__icon ri-book-open-line"></i> 
@@ -32,11 +33,18 @@
 </template>
 <script>
     export default {
+        data() {
+            return {
+                store
+                // openPageProduct: false,        
+            }
+        },
         // inject: ['openItem'],
         components: {
             RouterLink
         },
-        emits: ['open-card'],
+        // emits: ['open-card'],
+       
         // methods: {
         //     openCard() {
         //         this.openItem = true;

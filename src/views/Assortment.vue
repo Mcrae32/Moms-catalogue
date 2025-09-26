@@ -2,11 +2,13 @@
 // import TheWelcome from '../components/TheWelcome.vue'
   import Filter from '../components/Filter.vue'
   import ProductCard from '../components/ProductCard.vue'
-  // import { RouterView } from 'vue-router'
+  import { RouterView } from 'vue-router'
+  import {store} from '../store.js'
 </script>
 
 <template>
-  <template v-if="!openItem">
+  <!-- <template v-if="!openItem"> -->
+  <template v-if="!store.openPosition">
   <!-- <template> -->
     <div class="content__filter">
       <Filter />            
@@ -33,8 +35,7 @@
               :cardReviews="product.cardReviews"
               :cardPrice="product.cardPrice"
               :cardImage="product.cardImage"
-              :modalState="product.modalState"
-              @open-card="openCard"                  
+              :modalState="product.modalState"                            
             ></product-card>
           </div>
         </div>
@@ -52,6 +53,7 @@ export default {
     return {
       openItem: false,
       winWidth: window.innerWidth,
+      openPosition: store.openPosition
     }
   },
   computed: {
@@ -73,7 +75,8 @@ export default {
   mounted() {
     window.onresize = () => {
       this.winWidth = window.innerWidth
-    }
+    },
+    console.log("openPosition from store - ", this.openPosition)
   },
   components: {
     Filter,

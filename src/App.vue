@@ -1,4 +1,5 @@
 <script setup>
+  import {store} from './store.js'
   import { RouterView } from 'vue-router'
   import LogoDesctop from './components/LogoDesctop.vue'
   import NavigationDesctop from './components/NavigationDesctop.vue'
@@ -68,6 +69,7 @@
     },
     data() {
       return {
+        store
         // openPageProduct: false,        
       }
     },

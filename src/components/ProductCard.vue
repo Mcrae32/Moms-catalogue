@@ -1,6 +1,7 @@
 <script setup>
     import ModalView from '../components/ModalView.vue'
     import { RouterLink } from 'vue-router'
+    import {store} from '../store'
 </script>
 
 <template>
@@ -9,7 +10,8 @@
             <button class="quick-view" @click="openModal">Быстрый просмотр</button>
             <img :src="cardImage" :alt="nameProduct">
         </div>        
-        <RouterLink :to="'/assortment/' + id" @click="$emit('open-card')">
+        <!-- <RouterLink :to="'/assortment/' + id" @click="$emit('open-card')"> -->
+        <RouterLink :to="'/assortment/' + id" @click="store.openPosition = true">
         <!-- <RouterLink :to="'/assortment/' + id"> -->
             <div class="card__content">            
                 <p class="card__title">{{ nameProduct }}</p>
@@ -39,7 +41,8 @@
 export default {
     data() {
         return {
-            stateModal: this.modalState
+            stateModal: this.modalState,
+            store,
         }
     },
     props: {
@@ -59,7 +62,7 @@ export default {
             this.stateModal = !this.stateModal;
         }
     },
-    emits: ['open-card'],
+    // emits: ['open-card'],
 }
 </script>
 
