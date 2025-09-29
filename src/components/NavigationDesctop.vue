@@ -1,6 +1,6 @@
 <script setup>
     import { RouterLink } from 'vue-router'
-    import {store} from '../store'
+    import { store } from '../store'
 </script>
 
 <template>
@@ -35,11 +35,9 @@
     export default {
         data() {
             return {
-                store
-                // openPageProduct: false,        
+                store       
             }
         },
-        // inject: ['openItem'],
         components: {
             RouterLink
         },
@@ -94,11 +92,7 @@
                 &.ri-book-open-line {
                     padding-bottom: 0;
                 }
-            }
-
-            a {
-                
-            }
+            }            
 
             a:hover, a:focus {
                 text-decoration: none;

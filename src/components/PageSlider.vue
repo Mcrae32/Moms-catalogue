@@ -1,153 +1,244 @@
-<script>
-    import { Swiper, SwiperSlide } from 'swiper/vue';
-    import 'swiper/css'
-
-    export default {
-        components: {
-            Swiper, SwiperSlide,
-        },
-        emits: ['close-modal'],
-        props: {
-            stateModal: { type: Boolean, required: true, },
-            id: { type: Number, },
-        },
-        data() {
-            return {
-            modalState: this.stateModal
-            }
-        },
-        methods: {
-        
-        },
-        setup() {
-            const onSwiper = (swiper) => {
-                console.log(swiper);
-            };
-            const onSlideChange = () => {
-                console.log('slide change');
-            };
-            return {
-                onSlideChange, onSwiper,
-            };
-        },
-    };
-</script>
-
 <template>
-    <!-- <div class="product-rewiews__slider slider">
-        <div class="slider__show-container">
-            <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-        </div>
-        <div class="slider__prew-container prew">
-            <div class="prew__image is-action">
-                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-            </div>
-            <div class="prew__image">
-                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-            </div>
-            <div class="prew__image">
-                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-            </div>
-        </div>
-    </div> -->
-    
     <div class="product-rewiews__slider slider">
         <div class="slider__show-container">
             <swiper
-                :slides-per-view="1"
-                :space-between="30"
-                @swiper="onSwiper"
-                @slideChange="onSlideChange"
-                :modules="modules"
+                :style="{
+                '--swiper-navigation-color': '#fff',
+                '--swiper-pagination-color': '#fff',
+                }"
+                :navigation="{ prevEl: prev, nextEl: next }"
+                :spaceBetween="10"                
+                :thumbs="{ swiper: thumbsSwiper }"
+                :modules="modules"                
+                class="mySwiper2"
             >
-                <swiper-slide>
-                    <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-                </swiper-slide>
-                <swiper-slide>
-                    <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-                </swiper-slide>
-                <swiper-slide>
-                    <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-                </swiper-slide>                                
+                <swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+                /></swiper-slide>
+                <div ref="prev" class="swiper-button-prev"></div>
+                <div ref="next" class="swiper-button-next"></div>
             </swiper>
+            
         </div>
-        <div class="slider__prew-container prew">
-            <!-- <div class="prew__image is-action">
-                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-            </div>
-            <div class="prew__image">
-                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-            </div>
-            <div class="prew__image">
-                <img src="../assets/images/assortment/1/1-1.jpg" alt="Название продукта">
-            </div> -->
-            
-            
+        <div>
+            <swiper
+                @swiper="setThumbsSwiper"
+                :spaceBetween="10"
+                :slidesPerView="4"
+                :freeMode="true"
+                :watchSlidesProgress="true"
+                :modules="modules"
+                class="mySwiper"
+            >
+                <swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img
+                    src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
+                ><swiper-slide
+                ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
+                /></swiper-slide>
+            </swiper>
         </div>
     </div>
 </template>
+<script>
+  import { ref } from 'vue';  
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+  import 'swiper/css';
+  import 'swiper/css/free-mode';
+  import 'swiper/css/navigation';
+  import 'swiper/css/thumbs';
+
+  // import required modules
+  import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+
+  export default {
+    components: {
+      Swiper,
+      SwiperSlide,
+    },
+    setup() {
+      const thumbsSwiper = ref(null);
+
+      const setThumbsSwiper = (swiper) => {
+        thumbsSwiper.value = swiper;
+      };
+
+      const prev = ref(null);
+      const next = ref(null);
+
+      return {
+        thumbsSwiper,
+        setThumbsSwiper,
+        modules: [FreeMode, Navigation, Thumbs],        
+        prev,
+        next,
+      };
+    },
+  };
+</script>
 
 <style lang="scss" scoped>
-    .product-rewiews__slider {
+    .swiper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
         display: flex;
-        gap: 8px;
-        width: 480px;
+        transition-property: transform;
+        transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
+        box-sizing: content-box;
+    }
+        
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #444;
 
-        @media (max-width: 1299px) {
-            width: 406px;
+        /* Center slide text vertically */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        user-select: none
+    }
+
+    .swiper {
+        width: 100%;
+        height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .swiper-slide {
+        background-size: cover;
+        background-position: center;
+    }
+
+    .mySwiper2 {
+        position: relative;
+        height: 80%;
+        max-height: 340px;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid #f7f7f7;        
+
+        .swiper-button-prev, .swiper-button-next {
+            position: absolute;
+            top: unset;
+            bottom: 8px;
+            width: 30px;
+            height: 30px;
+            background-image: url(../assets/images/icons/other/slider-arrows.svg);
+            background-repeat: no-repeat;
+            overflow: hidden;
+
+            &::after {
+                display: none;
+            }
         }
 
-        @media (max-width: 1199px) {
-            width: 346px;
+        .swiper-button-prev {
+            left: unset;
+            right: 46px;
         }
+
+        .swiper-button-next {
+            right: 8px;
+            background-position-x: 100%;
+        }
+    }
+
+    .mySwiper {
+        height: 20%;
+        box-sizing: border-box;
+        padding: 10px 0;
+    }
+
+    .mySwiper .swiper-slide {
+        background: #f7f7f7;
+        width: 25%;
+        height: 100%;
+        opacity: 0.6;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid #f7f7f7;
+        padding: 3px;
+    }
+
+    .mySwiper .swiper-slide-thumb-active {
+        opacity: 1;
+        border-color: #FB5C5F;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 6px;
     }    
-    .slider__show-container {
-        overflow: hidden;
-        width: 406px;
-        height: 310px;
-        border-radius: 8px;
-
-        @media (max-width: 1199px) {
-            width: 100%;
-            height: auto;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-    }
-    .slider__prew-container {
-        width: 66px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        @media (max-width: 1299px) {
-            display: none;
-        }
-    }
-    .prew__image {
-        width: 66px;
-        height: 66px;
-        border-radius: 8px;
-        border: 1px solid #fff;
-        padding: 4px;
-        background-color: #fff;
-        overflow: hidden;
-
-        &.is-action {
-            border-color: #FB5C5F;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 8px;
-        }
-    }
+    
 </style>

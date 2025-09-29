@@ -3,7 +3,7 @@
   import Filter from '../components/Filter.vue'
   import ProductCard from '../components/ProductCard.vue'
   import { RouterView } from 'vue-router'
-  import {store} from '../store.js'
+  import { store } from '../store.js'
 </script>
 
 <template>
@@ -16,7 +16,7 @@
     <div class="content__catalogue catalogue">
       <div class="catalogue__position-filter filter">
         <span class="filter__position">Все</span>
-        <span class="filter__count">{{ productAssortment.length }}</span>
+        <span class="filter__count">{{ productAssortment1.length }}</span>
       </div>          
       <div class="catalogue__wrap">
         <div 
@@ -25,7 +25,7 @@
         >
           <div
             class="product-item"
-            v-for="product in productAssortment"
+            v-for="product in productAssortment1"
             :key="product.id"
           >
             <product-card
@@ -47,13 +47,12 @@
 
 <script>
 export default {
-  // inject: ['productAssortment', 'openItem'],
-  inject: ['productAssortment'],
   data() {
     return {
       openItem: false,
       winWidth: window.innerWidth,
-      openPosition: store.openPosition
+      openPosition: store.openPosition,
+      productAssortment1: store.productAssortment,
     }
   },
   computed: {
@@ -75,8 +74,8 @@ export default {
   mounted() {
     window.onresize = () => {
       this.winWidth = window.innerWidth
-    },
-    console.log("openPosition from store - ", this.openPosition)
+    }
+    // console.log("openPosition from store - ", this.openPosition)
   },
   components: {
     Filter,

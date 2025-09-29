@@ -1,6 +1,7 @@
 <script setup>
   import Breadcrumb from '@/components/Breadcrumb.vue';
-  // import PageSlider from '@/components/PageSlider.vue';
+  import PageSlider from '@/components/PageSlider.vue';
+  import { store } from '../store.js'
 </script>
 <template>
   <template v-if="productId">
@@ -36,8 +37,8 @@
         </div>
       </div>
     </div>
-    <div class="product-reviews__column">
-      <!-- <PageSlider /> -->
+    <div class="product-reviews__column product-reviews__column_slider">
+      <PageSlider />
     </div>
   </div>
   </template>
@@ -45,18 +46,19 @@
 </template>
 <script>
 export default {
-  inject: ['productAssortment'],
+  data() {
+    return {
+      store,
+      productAssortment1: store.productAssortment,
+    }
+  },
   props: ['productId'],
   components: {
     Breadcrumb
   },
   computed: {
-    // productItem() {
-    //   return "1234"
-    // },
     productItem() {      
-      return this.productAssortment.find(product => product.id == this.productId);
-      // console.log( this.productAssortment.find(product => product.id == this.productId) );
+      return this.productAssortment1.find(product => product.id == this.productId);
     }
   },
 }
@@ -81,6 +83,11 @@ export default {
 
     .product-reviews__weight {
       margin-bottom: 2em;
+    }
+
+    .product-reviews__column_slider {
+      max-width: 480px;      
+      // position: relative;
     }
   }
   

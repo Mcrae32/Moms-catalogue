@@ -13,7 +13,7 @@ const router = createRouter({
       children: [
         {
           path: ':productId?',
-          component: ProductView,          
+          component: ProductView,     
           props: true,
         }
       ],

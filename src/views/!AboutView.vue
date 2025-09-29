@@ -1,6 +1,6 @@
 <script setup>
   import Breadcrumb from '@/components/Breadcrumb.vue';
-  import PageSlider from '@/components/PageSlider.vue';
+  import PageSlider from '@/components/!PageSlider.vue';
 </script>
 <template>
   <Breadcrumb />
