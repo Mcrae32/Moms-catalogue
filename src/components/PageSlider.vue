@@ -6,6 +6,10 @@
                 '--swiper-navigation-color': '#fff',
                 '--swiper-pagination-color': '#fff',
                 }"
+                :pagination="{ 
+                    el: '.swiper-pagination', 
+                    type: 'fraction',                                     
+                }"
                 :navigation="{ prevEl: prev, nextEl: next }"
                 :spaceBetween="10"                
                 :thumbs="{ swiper: thumbsSwiper }"
@@ -13,37 +17,13 @@
                 class="mySwiper2"
             >
                 <swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-                /></swiper-slide>
+                    v-for="(photo, i) in photosProduct" :key="i"
+                ><img :src="photo" alt="">
+                </swiper-slide>
+                
                 <div ref="prev" class="swiper-button-prev"></div>
                 <div ref="next" class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
             </swiper>
             
         </div>
@@ -57,36 +37,10 @@
                 :modules="modules"
                 class="mySwiper"
             >
-                <swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-1.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-2.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-3.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-4.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-5.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-6.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-7.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-8.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img
-                    src="https://swiperjs.com/demos/images/nature-9.jpg" /></swiper-slide
-                ><swiper-slide
-                ><img src="https://swiperjs.com/demos/images/nature-10.jpg"
-                /></swiper-slide>
+            <swiper-slide
+                    v-for="(photo, i) in photosProduct" :key="i"
+                ><img :src="photo" alt="">
+                </swiper-slide>                
             </swiper>
         </div>
     </div>
@@ -100,27 +54,25 @@
   import 'swiper/css/thumbs';
 
   // import required modules
-  import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+  import { FreeMode, Navigation, Thumbs, Pagination } from 'swiper/modules';
 
   export default {
+    props: ['photosProduct'],
     components: {
       Swiper,
       SwiperSlide,
     },
     setup() {
       const thumbsSwiper = ref(null);
-
       const setThumbsSwiper = (swiper) => {
         thumbsSwiper.value = swiper;
       };
-
       const prev = ref(null);
       const next = ref(null);
-
       return {
         thumbsSwiper,
         setThumbsSwiper,
-        modules: [FreeMode, Navigation, Thumbs],        
+        modules: [FreeMode, Navigation, Thumbs, Pagination],        
         prev,
         next,
       };
@@ -240,5 +192,25 @@
         object-fit: cover;
         border-radius: 6px;
     }    
+
+    .swiper-pagination {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        z-index: 1;
+        font-size: 14px;
+        letter-spacing: 1px;
+        color: #ffffff;
+        padding: 8px 12px;
+        border-radius: 22px;
+        background-color: #333333;
+        opacity: 0.7;
+        font-weight: 100;        
+        border: 1px solid #ffffffc7;
+        width: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     
 </style>

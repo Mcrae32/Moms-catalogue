@@ -26,6 +26,7 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ProductView.vue'),
     },
+    // { path: '/:notFound(.*)', component: NotFound },
     // {
     //   path: '/assortment0',
     //   name: 'assortment0',

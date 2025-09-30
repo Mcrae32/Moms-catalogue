@@ -38,7 +38,9 @@
       </div>
     </div>
     <div class="product-reviews__column product-reviews__column_slider">
-      <PageSlider />
+      <PageSlider
+        :photosProduct="productItem.reviewsPhotosProduct"
+      />
     </div>
   </div>
   </template>
@@ -49,7 +51,7 @@ export default {
   data() {
     return {
       store,
-      productAssortment1: store.productAssortment,
+      productAssortment: store.productAssortment,
     }
   },
   props: ['productId'],
@@ -58,7 +60,7 @@ export default {
   },
   computed: {
     productItem() {      
-      return this.productAssortment1.find(product => product.id == this.productId);
+      return this.productAssortment.find(product => product.id == this.productId);
     }
   },
 }

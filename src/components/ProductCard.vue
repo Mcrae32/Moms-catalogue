@@ -10,9 +10,7 @@
             <button class="quick-view" @click="openModal">Быстрый просмотр</button>
             <img :src="cardImage" :alt="nameProduct">
         </div>        
-        <!-- <RouterLink :to="'/assortment/' + id" @click="$emit('open-card')"> -->
-        <RouterLink :to="'/assortment/' + id" @click="store.openPosition = true">
-        <!-- <RouterLink :to="'/assortment/' + id"> -->
+        <RouterLink :to="'/assortment/' + id" @click="store.openPosition = true">        
             <div class="card__content">            
                 <p class="card__title">{{ nameProduct }}</p>
                 <div class="card__info">
@@ -62,7 +60,6 @@ export default {
             this.stateModal = !this.stateModal;
         }
     },
-    // emits: ['open-card'],
 }
 </script>
 

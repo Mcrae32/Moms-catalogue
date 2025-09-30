@@ -7,9 +7,8 @@
 </script>
 
 <template>
-  <!-- <template v-if="!openItem"> -->
   <template v-if="!store.openPosition">
-  <!-- <template> -->
+  
     <div class="content__filter">
       <Filter />            
     </div>

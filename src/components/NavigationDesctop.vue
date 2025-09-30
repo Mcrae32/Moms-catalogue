@@ -5,18 +5,22 @@
 
 <template>
   <nav>
-    <!-- <button class="btn active">
-        <div class="btn__wrap">
-            <i class="btn__icon ri-home-7-line"></i> Главная
-        </div>
-    </button> -->
-    <!-- <RouterLink to="/assortment" class="btn" @click="$emit('open-card')"> -->
-    <RouterLink to="/assortment" class="btn" @click="store.openPosition = false">
-    <!-- <RouterLink to="/assortment" class="btn"> -->
-        <div class="btn__wrap">
-            <i class="btn__icon ri-book-open-line"></i> 
-            Ассортимент
-        </div>
+    <RouterLink 
+        to="/assortment" 
+        class="btn" 
+        @click="store.openPosition = false" 
+        custom
+        v-slot="{ navigate, href }"       
+    >
+        <a href="#" @click="navigate" :class="{
+          'active': $route.path.indexOf(href) !== -1
+        }">
+            <div class="btn__wrap">
+                <i class="btn__icon ri-book-open-line"></i> 
+                Ассортимент
+            </div>
+        </a>    
+        
     </RouterLink>
     <RouterLink to="/about" class="btn">
         <div class="btn__wrap">
