@@ -5,7 +5,7 @@
 </script>
 <template>
   <template v-if="productId">
-  <Breadcrumb />
+  <Breadcrumb :nameProduct="productItem.nameProduct" />
   <div class="content__product-reviews product-reviews">
     <div class="product-reviews__column">
       <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      

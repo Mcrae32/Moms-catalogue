@@ -1,7 +1,7 @@
 import {reactive} from 'vue'
 
 export const store = reactive({
-    openPosition: false,
+    // openPosition: false,
 
     productAssortment: [
         {
@@ -13,7 +13,8 @@ export const store = reactive({
             cardImage: '/src/assets/images/assortment/1.png',
             modalReviews: 'Это настоящая гастрономическая гордость, воплощение многовековых традиций и современных технологий. Каждый срез колбасы, будь то нежная докторская, пикантная сервелат или копчёная салями, – это маленькое произведение искусства.',
             modalState: false,
-            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg']
+            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
+            typeProduction: 'sausages',
         },
         {
             id: 1,
@@ -24,7 +25,8 @@ export const store = reactive({
             cardImage: '/src/assets/images/assortment/2.png',
             modalReviews: '',
             modalState: false,
-            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg']
+            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
+            typeProduction: 'sosiski',
         },
         {
             id: 2,
@@ -35,7 +37,20 @@ export const store = reactive({
             cardImage: '/src/assets/images/assortment/1.png',
             modalReviews: '',
             modalState: false,
-            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg']
-        },        
+            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
+            typeProduction: 'chips',
+        },  
+        {
+            id: 3,
+            nameProduct: 'Свинина прессованная. Продукт варено-копченый из свинины',
+            weight: 350,
+            cardReviews: 'Описание карточки и состава',
+            cardPrice: 2500,
+            cardImage: '/src/assets/images/assortment/2.png',
+            modalReviews: '',
+            modalState: false,
+            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
+            typeProduction: 'sausages',
+        },      
     ],
 })

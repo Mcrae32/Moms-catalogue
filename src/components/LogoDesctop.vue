@@ -21,7 +21,7 @@
         },
         methods: {
             goToAssortment() {
-                this.store.openPosition = false;
+                // this.store.openPosition = false;
                 this.$router.push('/assortment');
             }
         }

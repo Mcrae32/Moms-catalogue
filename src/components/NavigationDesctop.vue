@@ -5,7 +5,23 @@
 
 <template>
   <nav>
-    <RouterLink 
+    <!-- <RouterLink 
+        to="/assortment" 
+        class="btn" 
+        custom
+        v-slot="{ navigate, href }"       
+    >
+        <a href="#" @click="navigate" :class="{
+          'router-link-active': $route.path.indexOf(href) !== -1 || $route.path === '/'
+        }">
+            <div class="btn__wrap">
+                <i class="btn__icon ri-book-open-line"></i> 
+                Ассортимент
+            </div>
+        </a>            
+    </RouterLink> -->
+    
+    <!-- <RouterLink 
         to="/assortment" 
         class="btn" 
         @click="store.openPosition = false" 
@@ -20,13 +36,13 @@
                 Ассортимент
             </div>
         </a>            
-    </RouterLink>
-    <RouterLink to="/about" class="btn">
+    </RouterLink> -->
+    <!-- <RouterLink to="/about" class="btn">
         <div class="btn__wrap">
             <i class="btn__icon ri-building-2-line"></i> 
             О нас
         </div>
-    </RouterLink>
+    </RouterLink> -->
     <!-- <button class="btn">
         <div class="btn__wrap">
             <i class="btn__icon ri-contacts-line"></i> Контакты

@@ -1,24 +1,45 @@
-<script setup>
-
+<script>
+    export default {
+        emits: ['filterChanged'],
+        data() {
+            return {
+                currentFilter: 'all',
+            }
+        },
+        methods: {
+            setFilter(category) {
+                this.currentFilter = category;
+                this.$emit('filterChanged', category);
+            }
+        }
+    }
 </script>
 
 <template>
-    <button class="btn btn_all active">
+    <button 
+        class="btn btn_all" 
+        :class="{ active: currentFilter === 'all' }" 
+        @click="setFilter('all')"
+    >
         <div class="btn__wrap">
             <span class="btn__icon"></span> Все
         </div>
     </button>
-    <button class="btn btn_sausages">
+    <button 
+        class="btn btn_sausages" 
+        :class="{ active: currentFilter === 'sausages' }" 
+        @click="setFilter('sausages')"
+    >
         <div class="btn__wrap">
             <span class="btn__icon"></span> Колбасы
         </div>
     </button>
-    <button class="btn btn_sosiski">
+    <button class="btn btn_sosiski" :class="{ active: currentFilter === 'sosiski' }" @click="setFilter('sosiski')">
         <div class="btn__wrap">
             <span class="btn__icon"></span> Сосиски
         </div>
     </button>
-    <button class="btn btn_chips">
+    <button class="btn btn_chips" :class="{ active: currentFilter === 'chips' }" @click="setFilter('chips')">
         <div class="btn__wrap">
             <span class="btn__icon"></span> Чипсы
         </div>
