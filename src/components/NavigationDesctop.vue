@@ -5,7 +5,7 @@
 
 <template>
   <nav>
-    <!-- <RouterLink 
+    <RouterLink 
         to="/assortment" 
         class="btn" 
         custom
@@ -19,8 +19,8 @@
                 Ассортимент
             </div>
         </a>            
-    </RouterLink> -->
-    
+    </RouterLink>
+
     <!-- <RouterLink 
         to="/assortment" 
         class="btn" 

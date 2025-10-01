@@ -14,13 +14,8 @@
     <div class="content__catalogue catalogue">
       <div class="catalogue__position-filter filter">
         <span class="filter__position">
-          {{ 
-            filterCategory === 'all' ? 'Все' :
-            filterCategory === 'sausages' ? 'Колбасы' : 
-            filterCategory === 'sosiski' ? 'Сосиски' : 
-            filterCategory === 'chips' ? 'Чипсы' : 
-            'Другое' 
-          }}</span>
+          {{ filterCategory === 'all' ? 'Все' : filterCategory === 'sausages' ? 'Колбасы' : filterCategory === 'sosiski' ? 'Сосиски' : filterCategory === 'chips' ? 'Чипсы' : 'Другое' }}
+        </span>
         <span class="filter__count">{{ filteredProducts.length }}</span>
       </div>          
       <div class="catalogue__wrap">
@@ -78,7 +73,6 @@ export default {
     },    
     updateFilter(category) {
       this.filterCategory = category;
-      // console.log (this.filterCategory);
     },
   },
   mounted() {

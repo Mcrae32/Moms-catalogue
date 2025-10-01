@@ -1,20 +1,31 @@
 <script setup>
-
+    import { RouterLink } from 'vue-router'
+    import { store } from '../store'
 </script>
 
 <template>
   <nav class="navigation-tablet">
-    <button class="btn active">
+    <!-- <button class="btn active">
         <div class="btn__wrap">
             <i class="btn__icon ri-home-7-line"></i> <span>Главная</span>
         </div>
-    </button>
-    <button class="btn">
-        <div class="btn__wrap">
-            <i class="btn__icon ri-book-open-line"></i> <span>Ассортимент</span>
-        </div>
-    </button>
-    <button class="btn">
+    </button> -->
+    <RouterLink 
+        to="/assortment" 
+        class="btn" 
+        custom
+        v-slot="{ navigate, href }"       
+    >
+        <a href="#" @click="navigate" :class="{
+          'router-link-active': $route.path.indexOf(href) !== -1 || $route.path === '/'
+        }">
+            <div class="btn__wrap">
+                <i class="btn__icon ri-book-open-line"></i> 
+                <span>Ассортимент</span>
+            </div>
+        </a>            
+    </RouterLink>
+    <!-- <button class="btn">
         <div class="btn__wrap">
             <i class="btn__icon ri-building-2-line"></i> <span>О нас</span>
         </div>
@@ -23,7 +34,7 @@
         <div class="btn__wrap">
             <i class="btn__icon ri-contacts-line"></i> <span>Контакты</span>
         </div>
-    </button>    
+    </button>     -->
   </nav>
 </template>
 
@@ -37,7 +48,8 @@
         position: fixed;
         z-index: 100;
         bottom: 16px;
-        left: calc(50% - 252px);
+        // left: calc(50% - 252px);
+        left: calc(50% - 80px);
         height: 50px;
         background-color: #ffffff;
         border: 1px solid #f1f0f5;
@@ -49,7 +61,8 @@
         }
 
         @media (max-width: 599px) {
-            left: calc(50% - 127px);
+            // left: calc(50% - 127px);
+            left: calc(50% - 85px);
         }
     }
 
@@ -92,13 +105,14 @@
             }
 
             @media (max-width: 599px) {
-                span {
-                    display: none;
-                }
+                // span {
+                //     display: none;
+                // }
             }
         }
 
         &:hover, &:focus {
+            text-decoration: none;
             .btn__wrap {
                 background-color: #FB5559;
                 background: linear-gradient(120deg, rgba(254, 129, 129, 1) 0%, rgba(252, 83, 86, 1) 100%);
@@ -113,7 +127,7 @@
         }
     }
 
-    .btn.active {   
+    .btn.router-link-active {   
         position: relative;
         z-index: 1;
     

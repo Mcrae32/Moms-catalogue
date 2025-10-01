@@ -70,9 +70,10 @@ export default {
     display: flex;
     gap: 32px;
 
-    // @media (max-width: 1199px) {
-    //   flex-direction: column;
-    // }
+    @media (max-width: 1150px) {
+      flex-direction: column;
+      align-items: center;
+    }
 
     h1 {
       font-size: 2em;
@@ -88,8 +89,15 @@ export default {
     }
 
     .product-reviews__column_slider {
-      max-width: 480px;      
-      // position: relative;
+      max-width: 480px;    
+
+      @media (max-width: 1220px) {
+        max-width: 400px;
+      }  
+      
+      @media (max-width: 1150px) {
+        max-width: 480px;
+      }
     }
   }
   
