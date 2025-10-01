@@ -13,14 +13,13 @@
         v-slot="{ navigate, href }"       
     >
         <a href="#" @click="navigate" :class="{
-          'active': $route.path.indexOf(href) !== -1
+          'router-link-active': $route.path.indexOf(href) !== -1
         }">
             <div class="btn__wrap">
                 <i class="btn__icon ri-book-open-line"></i> 
                 Ассортимент
             </div>
-        </a>    
-        
+        </a>            
     </RouterLink>
     <RouterLink to="/about" class="btn">
         <div class="btn__wrap">
