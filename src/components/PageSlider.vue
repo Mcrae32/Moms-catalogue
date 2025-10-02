@@ -13,7 +13,15 @@
                 :navigation="{ prevEl: prev, nextEl: next }"
                 :spaceBetween="10"                
                 :thumbs="{ swiper: thumbsSwiper }"
-                :modules="modules"                
+                :modules="modules"
+                :breakpoints="{                    
+                    '923': {
+                        spaceBetween: 0,
+                    },
+                    '1023': {
+                        spaceBetween: 0,
+                    },
+                }"
                 class="mySwiper2"
             >
                 <swiper-slide
@@ -27,15 +35,20 @@
             </swiper>
             
         </div>
-        <div>
+        <div class="preview-swiper">
             <swiper
                 @swiper="setThumbsSwiper"
                 :spaceBetween="10"
                 :slidesPerView="4"
                 :freeMode="true"
-                :watchSlidesProgress="true"
+                :watchSlidesProgress="true"                
                 :modules="modules"
                 class="mySwiper"
+                :breakpoints="{                    
+                    '1023': {
+                        enabled: false
+                    },
+                }"
             >
             <swiper-slide
                     v-for="(photo, i) in photosProduct" :key="i"
@@ -137,6 +150,13 @@
         border-radius: 8px;
         border: 1px solid #f7f7f7;        
 
+        @media (max-width: 1023px) {
+            border: none;
+            border-radius: 0px;
+            height: 100%;
+            max-height: 490px;
+        }
+
         .swiper-button-prev, .swiper-button-next {
             position: absolute;
             top: unset;
@@ -191,6 +211,10 @@
         height: 100%;
         object-fit: cover;
         border-radius: 6px;
+
+        @media (max-width: 1023px) {
+            border-radius: 0px;
+        }
     }    
 
     .swiper-pagination {
@@ -211,6 +235,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .preview-swiper {
+        @media (max-width: 1023px) {
+            display: none;
+        }
+    }
+
+    .slider__show-container,
+    .product-rewiews__slider {
+        @media (max-width: 1023px) {
+            height: 100%;
+        }
     }
     
 </style>

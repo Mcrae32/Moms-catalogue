@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <template v-if="$route.path === '/assortment' || $route.path === '/'"> 
+  <div v-show="(($route.path === '/assortment' && winWidth >= 1024) || ($route.path === '/' && winWidth >= 1024)) || (winWidth <= 1023)">  
     <div class="content__filter">
       <Filter @filterChanged="updateFilter" />            
     </div>
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-  </template>
+  </div>
   <RouterView />
 </template>
 

@@ -1,4 +1,6 @@
 <script>
+  import { RouterLink } from 'vue-router';
+
   export default {
     emits: ['close-modal'],
     props: {
@@ -9,6 +11,14 @@
       price: { type: Number, },
       reviews: { type: String, },
     },
+    components: {
+      RouterLink
+    },
+    methods: {
+      goToPosition() {
+        this.$router.push('/assortment' + '/' + this.id);
+      }
+    }
 };
 </script>
 
@@ -32,7 +42,9 @@
               <p class="product-price__price">{{ price }} ₽</p>
               <span class="product-price__subprice">Акция</span>
             </div>
-            <a class="modal-card-head__link" href="/">Перейти в карточку товара</a>
+            <router-link class="modal-card-head__link" to="/" @click="goToPosition">
+              Перейти в карточку товара
+            </router-link>
           </div>
           <button 
             class="delete" 

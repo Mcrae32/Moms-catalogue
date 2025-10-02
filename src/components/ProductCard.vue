@@ -137,6 +137,10 @@ export default {
                 background-color: #ffffffeb;
                 box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.16);
             }
+
+            @media (max-width: 1023px) {
+                display: none;
+            }
         }
 
         &::after {

@@ -1,8 +1,6 @@
 import {reactive} from 'vue'
 
 export const store = reactive({
-    // openPosition: false,
-
     productAssortment: [
         {
             id: 0,
@@ -13,7 +11,7 @@ export const store = reactive({
             cardImage: '/src/assets/images/assortment/1.png',
             modalReviews: 'Это настоящая гастрономическая гордость, воплощение многовековых традиций и современных технологий. Каждый срез колбасы, будь то нежная докторская, пикантная сервелат или копчёная салями, – это маленькое произведение искусства.',
             modalState: false,
-            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
+            reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
             typeProduction: 'sausages',
         },
         {
@@ -51,6 +49,6 @@ export const store = reactive({
             modalState: false,
             reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
             typeProduction: 'sausages',
-        },      
+        },   
     ],
 })

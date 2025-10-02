@@ -1,6 +1,5 @@
 <script setup>
     import { RouterLink } from 'vue-router'
-    import { store } from '../store'
 </script>
 
 <template>

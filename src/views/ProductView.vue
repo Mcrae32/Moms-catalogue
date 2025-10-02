@@ -5,7 +5,10 @@
 </script>
 <template>
   <template v-if="productId">
-  <Breadcrumb :nameProduct="productItem.nameProduct" />
+  <Breadcrumb 
+    :nameProduct="productItem.nameProduct" 
+    v-show="(winWidth >= 1024)"
+  />
   <div class="content__product-reviews product-reviews">
     <div class="product-reviews__column">
       <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
@@ -43,6 +46,7 @@
       />
     </div>
   </div>
+  <div class="modal-background"></div>
   </template>
   <!-- sdfg -->
 </template>
@@ -52,6 +56,7 @@ export default {
     return {
       store,
       productAssortment: store.productAssortment,
+      winWidth: window.innerWidth,
     }
   },
   props: ['productId'],
@@ -62,6 +67,16 @@ export default {
     productItem() {      
       return this.productAssortment.find(product => product.id == this.productId);
     }
+  },
+  methods: {
+    handleResize() {
+      this.winWidth = widndow.innerWidth;
+    },        
+  },
+  mounted() {
+    window.onresize = () => {
+      this.winWidth = window.innerWidth
+    };    
   },
 }
 </script>
@@ -75,6 +90,22 @@ export default {
       align-items: center;
     }
 
+    @media (max-width: 1023px) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      flex-direction: column-reverse;
+      justify-content: flex-end;
+      overflow: hidden;
+      z-index: 101;        
+      border-radius: 24px 0px 0px 24px;
+      background: url(/src/assets/images/bg-pattern.jpg) center repeat #FCFDFF;        
+      width: 480px;
+      box-shadow: var(--box-shadow-container);          
+      gap: 0px;    
+    }
+
     h1 {
       font-size: 2em;
       text-wrap: pretty;
@@ -82,10 +113,25 @@ export default {
       @media (max-width: 1199px) {
         font-size: 1.8em;
       }
+
+      @media (max-width: 1023px) {
+        font-size: 1.2em;
+        grid-area: title;
+      }
+    }
+
+    .product-reviews__text {
+      @media (max-width: 1023px) {
+        grid-area: reviews;
+      }
     }
 
     .product-reviews__weight {
       margin-bottom: 2em;
+
+      @media (max-width: 1023px) {
+        display: none;
+      }
     }
 
     .product-reviews__column_slider {
@@ -98,6 +144,31 @@ export default {
       @media (max-width: 1150px) {
         max-width: 480px;
       }
+
+      @media (max-width: 1023px) {
+        padding: 0px;
+        height: 50%;
+      }
+    }
+  }
+
+  .product-reviews__column {
+    @media (max-width: 1023px) {
+      padding: 20px;
+      // display: grid;
+      // grid-template-areas: "title"
+      //                      "reviews"
+      //                      "price";
+    }
+  }
+
+  .modal-background {
+    background-color: rgba(0, 0, 0, 0.1882352941);
+    z-index: 1;
+    display: none;
+
+    @media (max-width: 1023px) {
+      display: block;
     }
   }
   
@@ -106,6 +177,11 @@ export default {
     flex-direction: column;
     gap: 4px;
     margin-bottom: 20px;
+
+    @media (max-width: 1023px) {
+      // grid-area: price;
+      // margin-bottom: 0;
+    }
   }
   .product-price__price {
     width: fit-content;
@@ -152,12 +228,26 @@ export default {
     margin-bottom: 16px;
 
     h3 {
-      font-size: 16px; font-weight: 600;
+      font-size: 16px; 
+      font-weight: 600;
       margin-bottom: 4px;
+
+      @media (max-width: 1023px) {
+        // font-size: 14px;        
+        color: #333333;
+        line-height: 110%;
+      }
     }
 
     p {
       line-height: 120%;
+
+      @media (max-width: 1023px) {
+          // font-size: 14px;
+          font-weight: normal;
+          color: #7c7c7c;
+          line-height: 120%;
+      }
     }
   }
 </style>
