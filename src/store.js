@@ -13,6 +13,7 @@ export const store = reactive({
             modalState: false,
             reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
             typeProduction: 'sausages',
+            actionPrice: true,
         },
         {
             id: 1,
@@ -25,6 +26,7 @@ export const store = reactive({
             modalState: false,
             reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
             typeProduction: 'sosiski',
+            actionPrice: false,
         },
         {
             id: 2,
@@ -37,6 +39,7 @@ export const store = reactive({
             modalState: false,
             reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
             typeProduction: 'chips',
+            actionPrice: false,
         },  
         {
             id: 3,
@@ -49,6 +52,7 @@ export const store = reactive({
             modalState: false,
             reviewsPhotosProduct: ['/src/assets/images/assortment/1/1-1.jpg', '/src/assets/images/assortment/1/1-1.jpg'],
             typeProduction: 'sausages',
+            actionPrice: false,
         },   
     ],
 })

@@ -18,7 +18,7 @@
                     <p class="card__reviews">{{ cardReviews }}</p>
                 </div>
                 <div class="card__footer">
-                    <span class="card__price">{{ cardPrice }} &nbsp;₽</span>
+                    <span class="card__price" :class="actionPrice ? 'action' : ''">{{ cardPrice }} &nbsp;₽</span>
                     <button class="card__button"></button>
                 </div>            
             </div>
@@ -32,6 +32,7 @@
         :price="cardPrice"
         :reviews="cardReviews"
         @close-modal="closeModal"
+        :actionPrice="actionPrice"
     />
 </template>
 
@@ -50,7 +51,8 @@ export default {
         cardReviews: { type: String, },
         cardPrice: { type: Number, },
         cardImage: { type: String, },
-        modalState: { type: Boolean, required: true, }
+        modalState: { type: Boolean, required: true, },
+        actionPrice: { type: Boolean },
     },
     methods: {
         openModal(id) {
@@ -197,6 +199,33 @@ export default {
         font-weight: bold;
         color: #333333;
     }
+    .card__price.action {
+      width: fit-content;
+      font-size: 16px; font-weight: 600 !important;
+      color: #ffffff;
+      background-color: #4BC6EF;
+      padding: 6px 8px;
+      margin-bottom: 0 !important;
+      border-radius: 4px;
+      position: relative;    
 
+      &::before, &::after {
+        content: '';
+        display: block;
+        background-color: #ffffff;
+        width: 6px; height: 6px;
+        border-radius: 3px;
+        position: absolute;
+        top: calc(50% - 3px);
+      }
+
+      &::before {
+        left: -3px;
+      }
+
+      &::after {
+        right: -3px;
+      }
+    }
     
 </style>

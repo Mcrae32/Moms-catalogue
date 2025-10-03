@@ -146,6 +146,10 @@ body {
         padding: 8px;
         border-radius: 0;
         min-height: calc(100vh - 0px);
+        overflow: hidden;
+        &:has(.product-reviews) {
+            height: 100vh;
+        }
     }
 }
 

@@ -10,6 +10,7 @@
       weight: { type: Number, },
       price: { type: Number, },
       reviews: { type: String, },
+      actionPrice: { type: Boolean }
     },
     components: {
       RouterLink
@@ -38,10 +39,13 @@
           <div class="modal-card-head__right-block">
             <p class="modal-card-title">{{ name }}</p>
             <p class="madal-card-weight">{{ weight }} г</p>
-            <div class="modal-card-price product-price price-action">
+            <div
+              class="modal-card-price product-price"
+              :class="actionPrice ? 'price-action' : ''"
+            >
               <p class="product-price__price">{{ price }} ₽</p>
-              <span class="product-price__subprice">Акция</span>
-            </div>
+              <span v-if="actionPrice" class="product-price__subprice">Акция</span>
+            </div>            
             <router-link class="modal-card-head__link" to="/" @click="goToPosition">
               Перейти в карточку товара
             </router-link>
@@ -128,7 +132,7 @@
   .modal-card-title {
     font-size: 20px; font-weight: bold !important;
     color: #333333;
-    margin-bottom: 16px;
+    margin-bottom: 12px !important;
   }
 
   .madal-card-weight {
@@ -143,32 +147,43 @@
     gap: 4px;
     margin-bottom: 20px;
   }
+
   .product-price__price {
     width: fit-content;
     font-size: 20px; font-weight: 600 !important;
-    color: #ffffff;
-    background-color: #4BC6EF;
-    padding: 6px 8px;
+    color: #333333;
+    padding: 6px 0px;
     margin-bottom: 0 !important;
-    border-radius: 7px;
-    position: relative;    
+  }
 
-    &::before, &::after {
-      content: '';
-      display: block;
-      background-color: #ffffff;
-      width: 8px; height: 8px;
-      border-radius: 4px;
-      position: absolute;
-      top: calc(50% - 4px);
-    }
+  .price-action {
+    .product-price__price {
+      width: fit-content;
+      font-size: 20px; font-weight: 600 !important;
+      color: #ffffff;
+      background-color: #4BC6EF;
+      padding: 6px 8px;
+      margin-bottom: 0 !important;
+      border-radius: 7px;
+      position: relative;    
 
-    &::before {
-      left: -4px;
-    }
+      &::before, &::after {
+        content: '';
+        display: block;
+        background-color: #ffffff;
+        width: 8px; height: 8px;
+        border-radius: 4px;
+        position: absolute;
+        top: calc(50% - 4px);
+      }
 
-    &::after {
-      right: -4px;
+      &::before {
+        left: -4px;
+      }
+
+      &::after {
+        right: -4px;
+      }
     }
   }
   .product-price__subprice {

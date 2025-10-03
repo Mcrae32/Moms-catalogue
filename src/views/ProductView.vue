@@ -11,32 +11,37 @@
   />
   <div class="content__product-reviews product-reviews">
     <div class="product-reviews__column">
-      <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
-      <p class="product-reviews__weight">{{ productItem.weight }} г</p>
-      <div class="product-reviews-price product-price price-action">
-        <p class="product-price__price">{{ productItem.cardPrice }} ₽</p>
-        <span class="product-reviews__subprice">Акция</span>
-      </div>
-      <div class="product-reviews__text product-text">
-        <div class="product-text__block">
-          <h3>Описание</h3>
-          <p>{{ productItem.modalReviews }}</p>
+      <div>
+        <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
+        <p class="product-reviews__weight">{{ productItem.weight }} г</p>
+        <div
+          class="product-reviews-price product-price"
+          :class="productItem.actionPrice ? 'price-action' : ''"
+        >
+          <p class="product-price__price">{{ productItem.cardPrice }} ₽</p>
+          <span v-if="productItem.actionPrice" class="product-reviews__subprice">Акция</span>
         </div>
-        <div class="product-text__block">
-          <h3>Состав</h3>
-          <p>{{ productItem.cardReviews }}</p>
-        </div>
-        <div class="product-text__block">
-          <h3>Годен</h3>
-          <p>10 суток</p>
-        </div>
-        <div class="product-text__block">
-          <h3>Вес/объем</h3>
-          <p>250 - 500&nbsp;г</p>
-        </div>
-        <div class="product-text__block">
-          <h3>Условия хранения</h3>
-          <p>Хранить при температуре от 2.0 °С до 6.0 °С</p>
+        <div class="product-reviews__text product-text">
+          <div class="product-text__block">
+            <h3>Описание</h3>
+            <p>{{ productItem.modalReviews }}</p>
+          </div>
+          <div class="product-text__block">
+            <h3>Состав</h3>
+            <p>{{ productItem.cardReviews }}</p>
+          </div>
+          <div class="product-text__block">
+            <h3>Годен</h3>
+            <p>10 суток</p>
+          </div>
+          <div class="product-text__block">
+            <h3>Вес/объем</h3>
+            <p>250 - 500&nbsp;г</p>
+          </div>
+          <div class="product-text__block">
+            <h3>Условия хранения</h3>
+            <p>Хранить при температуре от 2.0 °С до 6.0 °С</p>
+          </div>
         </div>
       </div>
     </div>
@@ -45,8 +50,9 @@
         :photosProduct="productItem.reviewsPhotosProduct"
       />
     </div>
+    <div class="product-reviews__bottom-close" @click="hideReviews"></div>
   </div>
-  <div class="modal-background"></div>
+  <div class="modal-background" @click="hideReviews"></div>
   </template>
   <!-- sdfg -->
 </template>
@@ -72,6 +78,9 @@ export default {
     handleResize() {
       this.winWidth = widndow.innerWidth;
     },        
+    hideReviews() {
+      this.$router.push('/assortment');
+    }
   },
   mounted() {
     window.onresize = () => {
@@ -106,6 +115,13 @@ export default {
       gap: 0px;    
     }
 
+    @media (max-width: 599px) {
+      top: 44px;
+      left: 0px;
+      width: 100%;
+      border-radius: 24px 24px 0px 0px;
+    }
+
     h1 {
       font-size: 2em;
       text-wrap: pretty;
@@ -116,18 +132,20 @@ export default {
 
       @media (max-width: 1023px) {
         font-size: 1.2em;
-        grid-area: title;
+        margin-bottom: 20px;
+        // grid-area: title;
       }
     }
 
     .product-reviews__text {
       @media (max-width: 1023px) {
         grid-area: reviews;
+        overflow: auto;
       }
     }
 
     .product-reviews__weight {
-      margin-bottom: 2em;
+      margin-bottom: 1.2em;
 
       @media (max-width: 1023px) {
         display: none;
@@ -148,18 +166,42 @@ export default {
       @media (max-width: 1023px) {
         padding: 0px;
         height: 50%;
+        max-height: 300px;
+      }
+
+      @media (max-width: 599px) {
+        max-width: 100%;
       }
     }
   }
 
   .product-reviews__column {
     @media (max-width: 1023px) {
-      padding: 20px;
-      // display: grid;
-      // grid-template-areas: "title"
-      //                      "reviews"
-      //                      "price";
+      padding: 20px;      
+      
+      & > div {
+        // display: grid;
+        // grid-template-areas: "title"
+        //                     "reviews"
+        //                     "price";
+        height: 100%;
+        overflow: auto;
+      }
+
+      &:first-child {
+        height: calc(100vh - 300px);
+
+        @media (max-height: 699px) {
+          height: calc(100vh - 54%);
+        }
+
+        @media (max-height: 599px) {
+          height: calc(100vh - 50%);
+        }
+      }
     }
+
+    
   }
 
   .modal-background {
@@ -179,40 +221,48 @@ export default {
     margin-bottom: 20px;
 
     @media (max-width: 1023px) {
-      // grid-area: price;
-      // margin-bottom: 0;
+      grid-area: price;
+      // margin-bottom: 8px;
     }
   }
+
   .product-price__price {
     width: fit-content;
-    font-size: 20px;
-    font-weight: 600 !important;
-    color: #ffffff;
-    background-color: #4BC6EF;
-    padding: 6px 8px;
-    border-radius: 7px;
-    position: relative;
-    margin-bottom: 2px !important;
+    font-size: 20px; font-weight: 600 !important;
+    color: #333333;
+    padding: 6px 0px;
+    margin-bottom: 0 !important;
   }
 
-  .product-price__price::before, 
-  .product-price__price::after {
-    content: "";
-    display: block;
-    background-color: #ffffff;
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    position: absolute;
-    top: calc(50% - 4px);
-  }
+  .price-action {
+    .product-price__price {
+      width: fit-content;
+      font-size: 20px; font-weight: 600 !important;
+      color: #ffffff;
+      background-color: #4BC6EF;
+      padding: 6px 8px;
+      margin-bottom: 0 !important;
+      border-radius: 7px;
+      position: relative;    
 
-  .product-price__price::before {
-    left: -4px;
-  }
+      &::before, &::after {
+        content: '';
+        display: block;
+        background-color: #ffffff;
+        width: 8px; height: 8px;
+        border-radius: 4px;
+        position: absolute;
+        top: calc(50% - 4px);
+      }
 
-  .product-price__price::after {
-    right: -4px;
+      &::before {
+        left: -4px;
+      }
+
+      &::after {
+        right: -4px;
+      }
+    }
   }
   .product-reviews__subprice {
     font-size: 12px;
@@ -248,6 +298,38 @@ export default {
           color: #7c7c7c;
           line-height: 120%;
       }
+    }
+  }
+
+  .product-reviews__bottom-close {
+    display: none;
+    position: absolute;
+    top: 16px;
+    bottom: unset;    
+    left: 16px;
+    width: 30px;
+    height: 30px;
+    background-image: url(../assets/images/icons/other/slider-arrows.svg);
+    background-position-x: 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;    
+    z-index: 2;
+    cursor: pointer;
+
+    @media (max-width: 1023px) {
+      display: block;
+    }
+
+    @media (max-width: 599px) {
+      background-color: #333333;
+      opacity: 0.7;
+      background-image: unset;
+      width: 54px;
+      height: 8px;
+      border-radius: 4px;
+      left: calc(50% - 27px);
+      top: 24px;
+      border: 1px solid white;
     }
   }
 </style>

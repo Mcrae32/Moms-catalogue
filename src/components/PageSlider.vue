@@ -43,12 +43,7 @@
                 :freeMode="true"
                 :watchSlidesProgress="true"                
                 :modules="modules"
-                class="mySwiper"
-                :breakpoints="{                    
-                    '1023': {
-                        enabled: false
-                    },
-                }"
+                class="mySwiper"                
             >
             <swiper-slide
                     v-for="(photo, i) in photosProduct" :key="i"
@@ -108,6 +103,10 @@
         transition-property: transform;
         transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
         box-sizing: content-box;
+
+        // @media (max-width: 1023px) {
+        //     max-height: 300px;
+        // }
     }
         
     .swiper-slide {
@@ -154,7 +153,7 @@
             border: none;
             border-radius: 0px;
             height: 100%;
-            max-height: 490px;
+            max-height: 300px;
         }
 
         .swiper-button-prev, .swiper-button-next {
@@ -170,16 +169,28 @@
             &::after {
                 display: none;
             }
+
+            @media (max-width: 1023px) {
+                bottom: 16px;
+            }
         }
 
         .swiper-button-prev {
             left: unset;
             right: 46px;
+
+            @media (max-width: 1023px) {
+                right: 54px;
+            }
         }
 
         .swiper-button-next {
             right: 8px;
             background-position-x: 100%;
+
+            @media (max-width: 1023px) {
+                right: 16px;
+            }
         }
     }
 
@@ -235,6 +246,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @media (max-width: 1023px) {
+            top: 16px;
+            right: 16px;
+        }
     }
 
     .preview-swiper {
@@ -247,7 +263,10 @@
     .product-rewiews__slider {
         @media (max-width: 1023px) {
             height: 100%;
+            max-height: 300px;
         }
     }
+
+    
     
 </style>

@@ -35,7 +35,8 @@
               :cardReviews="product.cardReviews"
               :cardPrice="product.cardPrice"
               :cardImage="product.cardImage"
-              :modalState="product.modalState"                            
+              :modalState="product.modalState"  
+              :actionPrice="product.actionPrice"                       
             ></product-card>
           </div>
         </div>
