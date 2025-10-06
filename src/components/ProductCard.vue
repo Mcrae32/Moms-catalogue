@@ -31,8 +31,9 @@
         :weight="weight"
         :price="cardPrice"
         :reviews="cardReviews"
-        @close-modal="closeModal"
+        @close-modal="closeModal"        
         :actionPrice="actionPrice"
+        :animated="animated"
     />
 </template>
 
@@ -42,6 +43,7 @@ export default {
         return {
             stateModal: this.modalState,
             store,
+            animated: false,
         }
     },
     props: {
@@ -57,9 +59,15 @@ export default {
     methods: {
         openModal(id) {
             this.stateModal = !this.stateModal;
+            setTimeout(() => {
+                this.animated = !this.animated;
+            }, 300);
         },
         closeModal(id) {
-            this.stateModal = !this.stateModal;
+            this.animated = !this.animated;
+            setTimeout(() => {
+                this.stateModal = !this.stateModal;                
+            }, 200);            
         }
     },
 }

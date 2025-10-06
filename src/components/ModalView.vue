@@ -1,7 +1,7 @@
 <script>
   import { RouterLink } from 'vue-router';
 
-  export default {
+  export default {    
     emits: ['close-modal'],
     props: {
       stateModal: { type: Boolean, required: true, },
@@ -10,7 +10,8 @@
       weight: { type: Number, },
       price: { type: Number, },
       reviews: { type: String, },
-      actionPrice: { type: Boolean }
+      actionPrice: { type: Boolean },
+      animated: { type: Boolean },
     },
     components: {
       RouterLink
@@ -18,7 +19,8 @@
     methods: {
       goToPosition() {
         this.$router.push('/assortment' + '/' + this.id);
-      }
+        this.$emit('close-modal');        
+      },      
     }
 };
 </script>
@@ -30,7 +32,7 @@
     :class="stateModal ? 'is-active' : ''"
     >
     <div class="modal-background" @click="$emit('close-modal')"></div>
-    <div class="modal-card">
+    <div class="modal-card fadeIn" :class="animated ? 'active' : ''">
       <header class="modal-card-head">
         <div class="modal-card-head__slider">
           <img src="../assets/images/assortment/1/1-1.jpg" alt="Название позиции">

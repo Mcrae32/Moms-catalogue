@@ -296,12 +296,13 @@ body {
     }
 }
 
+.fadeIn {
+    opacity: 0;
+    transform: translate(16px);
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.68, -0.65, 0.865, 1.55);
+}
 
-// .grid {
-//     .product-item {
-//         & > a {
-//             cursor: none;
-//             text-decoration: none;
-//         }
-//     }
-// }
+.fadeIn.active {
+    opacity: 1;
+    transform: translateY(0);
+}
