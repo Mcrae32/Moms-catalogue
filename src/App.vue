@@ -22,7 +22,7 @@
         <p class="content__subtitle">Подпись под приветствием</p>
       </div>
       <div class="content">
-        <RouterView />
+        <RouterView />        
       </div>
     </div>
     <NavigationTablet />

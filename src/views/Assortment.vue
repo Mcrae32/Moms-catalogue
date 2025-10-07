@@ -43,7 +43,12 @@
       </div>
     </div>
   </div>
-  <RouterView />
+  <!-- <RouterView /> -->
+  <router-view v-slot="{ Component }">
+    <transition name="fade">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -84,6 +89,10 @@ export default {
   components: {
     Filter,
     ProductCard
-  }
+  },  
 }
 </script>
+
+<style scoped>
+
+</style>

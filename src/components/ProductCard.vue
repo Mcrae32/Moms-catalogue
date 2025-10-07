@@ -23,6 +23,7 @@
                 </div>            
             </div>
         </RouterLink>
+        
     </div>
     <ModalView 
         :stateModal="stateModal"
@@ -67,7 +68,7 @@ export default {
             this.animated = !this.animated;
             setTimeout(() => {
                 this.stateModal = !this.stateModal;                
-            }, 200);            
+            }, 300);            
         }
     },
 }
@@ -110,7 +111,7 @@ export default {
     }
     .card__img {
         position: relative;
-        z-index: 1;
+        z-index: 0;
         width: 108px;
         height: 108px;
         background-image: url(../assets/images/board.png);
