@@ -1,7 +1,8 @@
 <script setup>
   import Breadcrumb from '@/components/Breadcrumb.vue';
   import PageSlider from '@/components/PageSlider.vue';
-  import { store } from '../store.js'
+  import { store } from '../store.js';
+  import 'swiped-events';
 </script>
 <template>
   <div v-if="productId">
@@ -9,7 +10,7 @@
       :nameProduct="productItem.nameProduct" 
       v-show="(winWidth >= 1024)"
     />
-    <div class="content__product-reviews product-reviews">
+    <div class="content__product-reviews product-reviews" :class="{ 'swiped': isSwiped }">
       <div class="product-reviews__column">
         <div>
           <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
@@ -50,11 +51,14 @@
           :photosProduct="productItem.reviewsPhotosProduct"
         />
       </div>
-      <div class="product-reviews__bottom-close" @click="hideReviews"></div>
+      <div 
+        class="product-reviews__bottom-close"         
+        @click="hideReviews"
+        @swiped-down="handleSwipeDown"                
+      ></div>
     </div>
     <div class="modal-background" @click="hideReviews"></div>
   </div>
-  <!-- sdfg -->
 </template>
 <script>
 export default {
@@ -63,6 +67,7 @@ export default {
       store,
       productAssortment: store.productAssortment,
       winWidth: window.innerWidth,
+      isSwiped: false,
     }
   },
   props: ['productId'],
@@ -79,8 +84,22 @@ export default {
       this.winWidth = widndow.innerWidth;
     },        
     hideReviews() {
-      this.$router.push('/assortment');
-    }
+      // this.$router.push('/assortment');
+      this.isSwiped = true;      
+      setTimeout(() => {
+        this.isSwiped = false;
+        this.$router.push('/assortment');
+      }, 500);
+    },
+    handleSwipeDown(event) {
+      // console.log('Смахнули вниз!', event);
+      this.isSwiped = true;      
+      setTimeout(() => {
+        this.isSwiped = false;
+        this.$router.push('/assortment');
+      }, 500);
+      
+    },
   },
   mounted() {
     window.onresize = () => {
@@ -116,11 +135,25 @@ export default {
     }
 
     @media (max-width: 599px) {
-      top: 44px;
+      top: auto;
+      bottom: 0;
       left: 0px;
+      transform: none;
+      height: 90vh;
       width: 100%;
       border-radius: 24px 24px 0px 0px;
-    }
+      
+      // transition: transform 0.5s ease;
+
+      transform: none;
+      transform: translateY(0);
+
+        &.swiped {
+        transform: translateY(100%);
+        // transform: translateY(150vh);
+        transition: transform 0.48s ease;
+      }      
+    }    
 
     h1 {
       font-size: 2em;
