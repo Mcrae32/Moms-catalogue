@@ -6,10 +6,22 @@
 
 <template>
     <div class="product-card c-a-r-d cell">
-        <div class="card__img">
+        <RouterLink
+            :to="'/assortment/' + id" @click="store.openPosition = true"
+            v-if="isMobile"
+        >
+            <div class="card__img">
+                <button class="quick-view" @click="openModal">Быстрый просмотр</button>
+                <img :src="cardImage" :alt="nameProduct">                
+            </div>    
+        </RouterLink>
+        <div 
+            class="card__img"
+            v-else
+        >
             <button class="quick-view" @click="openModal">Быстрый просмотр</button>
-            <img :src="cardImage" :alt="nameProduct">
-        </div>        
+            <img :src="cardImage" :alt="nameProduct">                
+        </div> 
         <RouterLink :to="'/assortment/' + id" @click="store.openPosition = true">        
             <div class="card__content">            
                 <p class="card__title">{{ nameProduct }}</p>
@@ -45,6 +57,7 @@ export default {
             stateModal: this.modalState,
             store,
             animated: false,
+            isMobile: false,
         }
     },
     props: {
@@ -69,7 +82,16 @@ export default {
             setTimeout(() => {
                 this.stateModal = !this.stateModal;                
             }, 300);            
-        }
+        },
+        mobileHandler() {
+            return window.innerWidth <= 1023 ? this.isMobile = true : this.isMobile = false;
+        },
+    },
+    mounted() {
+        window.addEventListener('resize', this.mobileHandler);
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.mobileHandler);
     },
 }
 </script>

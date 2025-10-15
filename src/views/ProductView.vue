@@ -49,6 +49,7 @@
       <div class="product-reviews__column product-reviews__column_slider">
         <PageSlider
           :photosProduct="productItem.reviewsPhotosProduct"
+          @swiped-down="handleSwipeDown"
         />
       </div>
       <div 
@@ -87,17 +88,21 @@ export default {
       // this.$router.push('/assortment');
       this.isSwiped = true;      
       setTimeout(() => {
-        this.isSwiped = false;
         this.$router.push('/assortment');
-      }, 500);
+      }, 600);
+      setTimeout(() => {
+        this.isSwiped = false;        
+      }, 700);
     },
     handleSwipeDown(event) {
       // console.log('Смахнули вниз!', event);
       this.isSwiped = true;      
       setTimeout(() => {
-        this.isSwiped = false;
         this.$router.push('/assortment');
-      }, 500);
+      }, 600);
+      setTimeout(() => {
+        this.isSwiped = false;        
+      }, 700);
       
     },
   },
@@ -135,11 +140,11 @@ export default {
     }
 
     @media (max-width: 599px) {
-      top: auto;
+      top: calc(10vh + 5%);
       bottom: 0;
       left: 0px;
       transform: none;
-      height: 90vh;
+      height: calc(90vh - 5%);
       width: 100%;
       border-radius: 24px 24px 0px 0px;
       
@@ -225,11 +230,11 @@ export default {
         height: calc(100vh - 300px);
 
         @media (max-height: 699px) {
-          height: calc(100vh - 54%);
+          height: calc(100vh - 64%);
         }
 
         @media (max-height: 599px) {
-          height: calc(100vh - 50%);
+          height: calc(100vh - 61%);
         }
       }
     }
