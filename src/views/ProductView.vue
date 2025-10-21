@@ -25,7 +25,9 @@
           <div class="product-reviews__text product-text">
             <div class="product-text__block">
               <h3>Описание</h3>
-              <p>{{ productItem.modalReviews }}</p>
+              <p v-for="(item, idx) in productItem.productReviews">
+                {{ item }}
+              </p>
             </div>
             <div class="product-text__block">
               <h3>Состав</h3>
@@ -54,6 +56,11 @@
       </div>
       <div 
         class="product-reviews__bottom-close"         
+        @click="hideReviews"
+        @swiped-down="handleSwipeDown"                
+      ></div>
+      <div 
+        class="product-reviews__bottom-close product-reviews__bottom-close_mobile"         
         @click="hideReviews"
         @swiped-down="handleSwipeDown"                
       ></div>
@@ -113,14 +120,19 @@ export default {
   },
 }
 </script>
+
 <style lang="scss" scoped>
+  $heightImageSlider: 300px;
+  $heightImageSliderMob: 160px;
+
   .content__product-reviews {
     display: flex;
     gap: 32px;
 
     @media (max-width: 1150px) {
-      flex-direction: column;
+      flex-direction: column-reverse;
       align-items: center;
+
     }
 
     @media (max-width: 1023px) {
@@ -133,18 +145,27 @@ export default {
       overflow: hidden;
       z-index: 101;        
       border-radius: 24px 0px 0px 24px;
-      background: url(/src/assets/images/bg-pattern.jpg) center repeat #FCFDFF;        
+      //background: url(/src/assets/images/bg-pattern.jpg) center repeat #FCFDFF;        
+      background-color: #ffffff;
       width: 480px;
       box-shadow: var(--box-shadow-container);          
-      gap: 0px;    
+      gap: 0px;   
+      
+        &.swiped {
+          transform: translateX(100%);
+          transition: transform 0.48s ease-in-out;
+        }
     }
 
     @media (max-width: 599px) {
-      top: calc(10vh + 5%);
-      bottom: 0;
+      // top: calc(10vh + 5%);
+      top: 15px;
+      bottom: 0px;
       left: 0px;
+      right: 0px;
       transform: none;
-      height: calc(90vh - 5%);
+      // height: calc(90vh - 5%);
+      height: calc(100% - 15px);
       width: 100%;
       border-radius: 24px 24px 0px 0px;
       
@@ -154,10 +175,9 @@ export default {
       transform: translateY(0);
 
         &.swiped {
-        transform: translateY(100%);
-        // transform: translateY(150vh);
-        transition: transform 0.48s ease;
-      }      
+          transform: translateY(100%);
+          transition: transform 0.48s ease-in-out;
+        }      
     }    
 
     h1 {
@@ -203,12 +223,19 @@ export default {
 
       @media (max-width: 1023px) {
         padding: 0px;
-        height: 50%;
-        max-height: 300px;
+        height: $heightImageSlider;
       }
 
       @media (max-width: 599px) {
         max-width: 100%;
+      }
+
+      @media (max-height: 699px) {
+        height: $heightImageSliderMob;
+      }
+
+      @media (max-height: 599px) {
+        height: $heightImageSliderMob;
       }
     }
   }
@@ -225,21 +252,23 @@ export default {
         height: 100%;
         overflow: auto;
       }
+    }    
+  }
 
-      &:first-child {
-        height: calc(100vh - 300px);
+  .product-reviews__column:first-child {
 
-        @media (max-height: 699px) {
-          height: calc(100vh - 64%);
-        }
-
-        @media (max-height: 599px) {
-          height: calc(100vh - 61%);
-        }
-      }
+    @media (max-width: 1023px) {
+      // height: calc(100vh - 340px);     
+      height: calc(100svh - ($heightImageSlider + 20px));                
     }
 
-    
+    @media (max-height: 699px) {
+      height: calc(100% - ($heightImageSliderMob));
+    }
+
+    @media (max-height: 599px) {
+      height: calc(100% - ($heightImageSliderMob));
+    }
   }
 
   .modal-background {
@@ -268,38 +297,35 @@ export default {
     width: fit-content;
     font-size: 20px; font-weight: 600 !important;
     color: #333333;
-    padding: 6px 0px;
+    background-color: #EEEEEE;
+    padding: 6px 8px;
     margin-bottom: 0 !important;
+    border-radius: 7px;
+    position: relative;    
+
+    &::before, &::after {
+      content: '';
+      display: block;
+      background-color: #ffffff;
+      width: 8px; height: 8px;
+      border-radius: 4px;
+      position: absolute;
+      top: calc(50% - 4px);
+    }
+
+    &::before {
+      left: -4px;
+    }
+
+    &::after {
+      right: -4px;
+    }
   }
 
   .price-action {
     .product-price__price {
-      width: fit-content;
-      font-size: 20px; font-weight: 600 !important;
       color: #ffffff;
       background-color: #4BC6EF;
-      padding: 6px 8px;
-      margin-bottom: 0 !important;
-      border-radius: 7px;
-      position: relative;    
-
-      &::before, &::after {
-        content: '';
-        display: block;
-        background-color: #ffffff;
-        width: 8px; height: 8px;
-        border-radius: 4px;
-        position: absolute;
-        top: calc(50% - 4px);
-      }
-
-      &::before {
-        left: -4px;
-      }
-
-      &::after {
-        right: -4px;
-      }
     }
   }
   .product-reviews__subprice {
@@ -313,7 +339,7 @@ export default {
   }
 
   .product-text__block {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
     h3 {
       font-size: 16px; 
@@ -329,12 +355,13 @@ export default {
 
     p {
       line-height: 120%;
+      padding-bottom: 8px;
+      margin-bottom: 0 !important;
 
       @media (max-width: 1023px) {
-          // font-size: 14px;
-          font-weight: normal;
-          color: #7c7c7c;
-          line-height: 120%;
+        font-weight: normal;
+        color: #7c7c7c;
+        line-height: 120%;
       }
     }
   }
@@ -368,6 +395,24 @@ export default {
       left: calc(50% - 27px);
       top: 24px;
       border: 1px solid white;
+    }
+
+    &.product-reviews__bottom-close_mobile {
+      display: none;
+
+      @media (max-width: 599px) {
+        display: block;
+        top: 16px;
+        left: 16px;
+        width: 30px;
+        height: 30px;
+        background-image: url(../assets/images/icons/other/slider-arrows.svg);                
+        border-radius: unset;
+        border: unset;
+        background-color: unset;
+        opacity: 1;
+        transform: rotate(90deg);
+      }
     }
   }
 </style>

@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         scrollScreen() {
-            this.scrollLogo = window.scrollY > 50;
+            this.scrollLogo = window.scrollY > 10;
         }
     },
     mounted() {
@@ -43,7 +43,7 @@ export default {
         background-color: #ffffff;
         margin-bottom: 0;
         box-shadow: none;
-        transition: all 0.25s ease-in-out 0.25s;
+        transition: all 0.15s ease-in-out 0.25s;
 
         &.scroll {
             height: 60px;

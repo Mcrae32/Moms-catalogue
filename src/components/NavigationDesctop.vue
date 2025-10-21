@@ -158,7 +158,8 @@
             height: 38px;
             border-radius: 12px;
             background-color: #F48280;
-            filter: blur(10.6px)
+            filter: blur(10.6px);
+            transition: all 0.2s ease-in-out 0.2s
         }
 
         .btn__wrap {
@@ -188,6 +189,10 @@
                     display: none;
                     
                 }
+            }
+
+            &::after {
+                filter: blur(6.6px);
             }
         }
     }

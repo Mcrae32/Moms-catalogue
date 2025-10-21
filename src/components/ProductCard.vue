@@ -30,7 +30,10 @@
                     <p class="card__reviews">{{ cardReviews }}</p>
                 </div>
                 <div class="card__footer">
-                    <span class="card__price" :class="actionPrice ? 'action' : ''">{{ cardPrice }} &nbsp;₽</span>
+                    <div class="card__price-wrap">
+                        <span class="card__price" :class="actionPrice ? 'action' : ''">{{ cardPrice }} &nbsp;₽</span>
+                        <span v-if="actionPrice" class="product-price__subprice">Акция</span>
+                    </div>
                     <button class="card__button"></button>
                 </div>            
             </div>
@@ -84,14 +87,15 @@ export default {
             }, 300);            
         },
         mobileHandler() {
-            return window.innerWidth <= 1023 ? this.isMobile = true : this.isMobile = false;
+            return window.innerWidth <= 1023 ? this.isMobile = true : this.isMobile = false;            
         },
     },
     mounted() {
+        this.mobileHandler();
         window.addEventListener('resize', this.mobileHandler);
     },
     unmounted() {
-        window.removeEventListener('resize', this.mobileHandler);
+        window.removeEventListener('resize', this.mobileHandler);        
     },
 }
 </script>
@@ -225,38 +229,46 @@ export default {
         display: flex;
         align-items: center;
     }
+    .card__price-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    .product-price__subprice {
+        color: #4BC6EF;
+    }
     .card__price {
+        width: fit-content;
         font-size: 16px;
         font-weight: bold;
         color: #333333;
+        background-color: #EEEEEE;
+        padding: 6px 8px;
+        margin-bottom: 0 !important;
+        border-radius: 4px;
+        position: relative;
+
+        &::before, &::after {
+            content: '';
+            display: block;
+            background-color: #ffffff;
+            width: 6px; height: 6px;
+            border-radius: 3px;
+            position: absolute;
+            top: calc(50% - 3px);
+        }
+
+        &::before {
+            left: -3px;
+        }
+
+        &::after {
+            right: -3px;
+        }
     }
-    .card__price.action {
-      width: fit-content;
-      font-size: 16px; font-weight: 600 !important;
+    .card__price.action {     
       color: #ffffff;
-      background-color: #4BC6EF;
-      padding: 6px 8px;
-      margin-bottom: 0 !important;
-      border-radius: 4px;
-      position: relative;    
-
-      &::before, &::after {
-        content: '';
-        display: block;
-        background-color: #ffffff;
-        width: 6px; height: 6px;
-        border-radius: 3px;
-        position: absolute;
-        top: calc(50% - 3px);
-      }
-
-      &::before {
-        left: -3px;
-      }
-
-      &::after {
-        right: -3px;
-      }
+      background-color: #4BC6EF;        
     }
     
 </style>
