@@ -311,22 +311,25 @@ body {
     transform: translate(16px);
     transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.68, -0.65, 0.865, 1.55);
 }
-
 .fadeIn.active {
     opacity: 1;
     transform: translateY(0);
 }
-
-
 .fade-enter-active {
   transition: opacity 0s ease;
 }
-
 .fade-leave-active {
   transition: opacity 0s ease;
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.showIn {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.showIn.active {
+    opacity: 1;
 }

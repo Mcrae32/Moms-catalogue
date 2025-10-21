@@ -31,7 +31,7 @@
     class="modal"
     :class="stateModal ? 'is-active' : ''"
     >
-    <div class="modal-background" @click="$emit('close-modal')"></div>
+    <div class="modal-background showIn" :class="animated ? 'active' : ''" @click="$emit('close-modal')"></div>
     <div class="modal-card fadeIn" :class="animated ? 'active' : ''">
       <header class="modal-card-head">
         <div class="modal-card-head__slider">
@@ -94,6 +94,7 @@
   }
   .modal-background {
     background-color: #00000030;
+    // transition: all 0.5s ease-in-out 0.5s;
   }
 
   .modal-card {

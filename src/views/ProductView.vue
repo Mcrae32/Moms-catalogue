@@ -65,7 +65,7 @@
         @swiped-down="handleSwipeDown"                
       ></div>
     </div>
-    <div class="modal-background" @click="hideReviews"></div>
+    <div class="modal-background showIn" :class="animated ? 'active' : ''" @click="hideReviews"></div>     
   </div>
 </template>
 <script>
@@ -76,6 +76,7 @@ export default {
       productAssortment: store.productAssortment,
       winWidth: window.innerWidth,
       isSwiped: false,
+      animated: true,
     }
   },
   props: ['productId'],
@@ -100,7 +101,16 @@ export default {
       setTimeout(() => {
         this.isSwiped = false;        
       }, 700);
+
+      
+      setTimeout(() => {
+          this.animated = !this.animated;                
+      }, 300);
+      setTimeout(() => {
+          this.animated = !this.animated;                
+      }, 700);      
     },
+    
     handleSwipeDown(event) {
       // console.log('Смахнули вниз!', event);
       this.isSwiped = true;      
@@ -110,13 +120,19 @@ export default {
       setTimeout(() => {
         this.isSwiped = false;        
       }, 700);
-      
+
+      setTimeout(() => {
+          this.animated = !this.animated;                
+      }, 300);
+      setTimeout(() => {
+          this.animated = !this.animated;                
+      }, 700);       
     },
   },
   mounted() {
     window.onresize = () => {
       this.winWidth = window.innerWidth
-    };    
+    };      
   },
 }
 </script>
