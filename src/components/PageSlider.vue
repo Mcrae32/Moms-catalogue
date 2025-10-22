@@ -166,6 +166,10 @@
             background-repeat: no-repeat;
             overflow: hidden;
 
+            &:hover, &:focus {
+                -webkit-tap-highlight-color: transparent;
+            }
+
             &::after {
                 display: none;
             }

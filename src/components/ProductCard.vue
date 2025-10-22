@@ -116,6 +116,8 @@ export default {
                 background-color: #F5F6F8;
                 border-color: #F1F0F5;
             }
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         @media (min-width: 1024px) {

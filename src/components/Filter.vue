@@ -102,6 +102,7 @@
                 border: 1px solid #ffffff;
                 box-shadow: 0px 4px 19px 0px rgba(0, 0, 0, 0.08), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
             }
+            -webkit-tap-highlight-color: transparent;
         }
 
         &.btn_all {
@@ -109,7 +110,7 @@
                 background-position: 0px 0px;
             }
         }
-        &.btn_sausages {
+        &.btn_sausages {            
             .btn__wrap > .btn__icon {
                 background-position: -54px 0px;
             }
