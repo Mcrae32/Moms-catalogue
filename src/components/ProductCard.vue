@@ -50,6 +50,7 @@
         @close-modal="closeModal"        
         :actionPrice="actionPrice"
         :animated="animated"
+        :reviewsImage="reviewsImage"
     />
 </template>
 
@@ -72,6 +73,7 @@ export default {
         cardImage: { type: String, },
         modalState: { type: Boolean, required: true, },
         actionPrice: { type: Boolean },
+        reviewsImage: { type: String },
     },
     methods: {
         openModal(id) {
@@ -110,6 +112,7 @@ export default {
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        gap: 8px;
 
         &:hover, &:focus {            
             .card__content {
@@ -142,11 +145,34 @@ export default {
         z-index: 0;
         width: 108px;
         height: 108px;
-        background-image: url(../assets/images/board.png);
-        background-position-x: center;
-        background-position-y: 0%;
-        background-size: 95.45px;
-        background-repeat: no-repeat;
+        // background-image: url(../assets/images/board.png);
+        // background-position-x: center;
+        // background-position-y: 0%;
+        // background-size: 95.45px;
+        // background-repeat: no-repeat; 
+
+        img {
+            position: relative;
+            z-index: 1;
+            border-radius: 16px;
+            
+            
+        }
+
+        &::after {
+                position: absolute;
+                content: "";
+                z-index: -1;
+                bottom: -3px;
+                left: calc(50% - 45px);
+                display: block;
+                width: 90px;
+                height: 40px;
+                border-radius: 25%;
+                background-color: #2300003d;
+                filter: blur(10px);
+                transition: all 0.2s ease-in-out 0.2s;
+            }
 
         .quick-view {
             opacity: 0;
@@ -182,18 +208,18 @@ export default {
             }
         }
 
-        &::after {
-            position: absolute;
-            top: calc(50% - 55px);
-            left: calc(50% - 49px);
-            content: '';
-            display: block;
-            width: 95.45px;
-            height: 95.45px;
-            border-radius: 50%;
-            box-shadow: 4.96px 9px 13.75px 0px rgba(0, 0, 0, 0.16), 2.48px 2.48px 4.96px 0px rgba(0, 0, 0, 0.05);
-            z-index: 0;
-        }
+        // &::after {
+        //     position: absolute;
+        //     top: calc(50% - 55px);
+        //     left: calc(50% - 49px);
+        //     content: '';
+        //     display: block;
+        //     width: 95.45px;
+        //     height: 95.45px;
+        //     border-radius: 50%;
+        //     box-shadow: 4.96px 9px 13.75px 0px rgba(0, 0, 0, 0.16), 2.48px 2.48px 4.96px 0px rgba(0, 0, 0, 0.05);
+        //     z-index: 0;
+        // }
     }
     .card__content {
         display: flex;

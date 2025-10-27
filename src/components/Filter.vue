@@ -22,7 +22,7 @@
         @click="setFilter('all')"
     >
         <div class="btn__wrap">
-            <span class="btn__icon"></span> Все
+            <span class="btn__icon"></span>Все
         </div>
     </button>
     <button 
@@ -31,19 +31,19 @@
         @click="setFilter('sausages')"
     >
         <div class="btn__wrap">
-            <span class="btn__icon"></span> Колбасы
+            <span class="btn__icon"></span>Колбасы,<br />ветчины
         </div>
     </button>
     <button class="btn btn_sosiski" :class="{ active: currentFilter === 'sosiski' }" @click="setFilter('sosiski')">
         <div class="btn__wrap">
-            <span class="btn__icon"></span> Сосиски
+            <span class="btn__icon"></span>Сосиски, <br />сардельки
         </div>
     </button>
-    <button class="btn btn_chips" :class="{ active: currentFilter === 'chips' }" @click="setFilter('chips')">
+    <!-- <button class="btn btn_chips" :class="{ active: currentFilter === 'chips' }" @click="setFilter('chips')">
         <div class="btn__wrap">
             <span class="btn__icon"></span> Чипсы
         </div>
-    </button>
+    </button> -->
 </template>
 
 <style lang="scss" scoped>
@@ -56,6 +56,7 @@
             gap: 8px;
             font-weight: 600;
             font-size: 12px;
+            text-align: left;
             color: #b0b0b0;
             height: 62px;
             border-radius: 49px;
@@ -81,10 +82,12 @@
             @media (max-width: 599px) {
                 flex-direction: column;
                 width: 60px;
-                height: 82px;
+                height: 96px;
                 gap: 3px;
                 font-size: 9px;
-                line-height: 100%;
+                text-align: center;
+                line-height: 1;
+                word-wrap: break-word;
                 padding: 4.8px 4.8px 8.8px 4.8px; 
 
                 span.btn__icon {

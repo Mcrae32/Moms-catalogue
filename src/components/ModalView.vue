@@ -12,6 +12,7 @@
       reviews: { type: String, },
       actionPrice: { type: Boolean },
       animated: { type: Boolean },
+      reviewsImage: { type: String },
     },
     components: {
       RouterLink
@@ -35,7 +36,8 @@
     <div class="modal-card fadeIn" :class="animated ? 'active' : ''">
       <header class="modal-card-head">
         <div class="modal-card-head__slider">
-          <img src="../assets/images/assortment/1/1-1.jpg" alt="Название позиции">
+          <!-- <img src="../assets/images/assortment/1/1-1.jpg" alt="Название позиции"> -->
+           <img :src="reviewsImage" alt="Название позиции">
         </div>
         <div class="modal-card-head__text">
           <div class="modal-card-head__right-block">
@@ -120,10 +122,12 @@
   .modal-card-head__slider {
     max-width: 330px;
     border-radius: 8px;
+    border: 1px solid #f1f0f5;
 
       img {
         width: 100%;
         height: auto;
+        border-radius: 8px;
       }
   }
 

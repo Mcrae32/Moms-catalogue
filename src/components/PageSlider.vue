@@ -142,8 +142,8 @@
 
     .mySwiper2 {
         position: relative;
-        height: 80%;
-        max-height: 340px;
+        height: 100%;
+        max-height: 449px;
         width: 100%;
         overflow: hidden;
         border-radius: 8px;
@@ -225,7 +225,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 6px;
 
         @media (max-width: 1023px) {
             border-radius: 0px;

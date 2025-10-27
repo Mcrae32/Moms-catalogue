@@ -14,7 +14,7 @@
       <div class="product-reviews__column">
         <div>
           <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
-          <p class="product-reviews__weight">{{ productItem.weight }} г</p>
+          <!-- <p class="product-reviews__weight">{{ productItem.weight }} г</p> -->
           <div
             class="product-reviews-price product-price"
             :class="productItem.actionPrice ? 'price-action' : ''"
@@ -35,15 +35,15 @@
             </div>
             <div class="product-text__block">
               <h3>Годен</h3>
-              <p>10 суток</p>
+              <p>{{ productItem.expirationDate}}</p>
             </div>
             <div class="product-text__block">
               <h3>Вес/объем</h3>
-              <p>250 - 500&nbsp;г</p>
+              <p>{{ productItem.weight }} г</p>
             </div>
             <div class="product-text__block">
               <h3>Условия хранения</h3>
-              <p>Хранить при температуре от 2.0 °С до 6.0 °С</p>
+              <p>{{ productItem.storageСonditions }}</p>
             </div>
           </div>
         </div>
@@ -272,6 +272,9 @@ export default {
   }
 
   .product-reviews__column:first-child {
+    @media (min-width: 1151px) {
+      width: 68%;
+    }
 
     @media (max-width: 1023px) {
       // height: calc(100vh - 340px);     
