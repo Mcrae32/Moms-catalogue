@@ -140,6 +140,7 @@ export default {
 <style lang="scss" scoped>
   $heightImageSlider: 300px;
   $heightImageSliderMob: 160px;
+  $heightImageSliderMob_2: 260px;
 
   .content__product-reviews {
     display: flex;
@@ -161,9 +162,9 @@ export default {
       overflow: hidden;
       z-index: 101;        
       border-radius: 24px 0px 0px 24px;
-      //background: url(/src/assets/images/bg-pattern.jpg) center repeat #FCFDFF;        
       background-color: #ffffff;
       width: 480px;
+      height: 100%;
       box-shadow: var(--box-shadow-container);          
       gap: 0px;   
       
@@ -247,10 +248,10 @@ export default {
       }
 
       @media (max-height: 699px) {
-        height: $heightImageSliderMob;
+        height: $heightImageSliderMob_2;
       }
 
-      @media (max-height: 599px) {
+      @media (max-height: 450px) {
         height: $heightImageSliderMob;
       }
     }
@@ -278,15 +279,15 @@ export default {
 
     @media (max-width: 1023px) {
       // height: calc(100vh - 340px);     
-      height: calc(100svh - ($heightImageSlider + 20px));                
+      height: calc(100dvh - ($heightImageSlider + 20px));                
     }
 
     @media (max-height: 699px) {
-      height: calc(100% - ($heightImageSliderMob));
+      height: calc(100dvh - ($heightImageSliderMob_2));
     }
 
-    @media (max-height: 599px) {
-      height: calc(100% - ($heightImageSliderMob));
+    @media (max-height: 450px) {
+      height: calc(100dvh - ($heightImageSliderMob));
     }
   }
 

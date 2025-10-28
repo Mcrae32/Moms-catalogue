@@ -26,7 +26,12 @@
             >
                 <swiper-slide
                     v-for="(photo, i) in photosProduct" :key="i"
-                ><img :src="photo" alt="">
+                    :class="{ 'is-skeleton': isLoading }"
+                ><img 
+                    :src="photo" 
+                    alt=""
+                    @load="loadImage"
+                >
                 </swiper-slide>
                 
                 <div ref="prev" class="swiper-button-prev"></div>
@@ -65,7 +70,17 @@
   import { FreeMode, Navigation, Thumbs, Pagination } from 'swiper/modules';
 
   export default {
+     data() {
+        return {
+            isLoading: true,
+        }
+    },
     props: ['photosProduct'],
+    methods: {
+        loadImage() {
+            this.isLoading = false;
+        }
+    },
     components: {
       Swiper,
       SwiperSlide,
@@ -84,7 +99,7 @@
         prev,
         next,
       };
-    },
+    },    
   };
 </script>
 

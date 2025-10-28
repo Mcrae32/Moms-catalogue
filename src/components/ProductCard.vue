@@ -12,7 +12,9 @@
         >
             <div class="card__img">
                 <button class="quick-view" @click="openModal">Быстрый просмотр</button>
-                <img :src="cardImage" :alt="nameProduct">                
+                <figure class="image" :class="{ 'is-skeleton': isLoading }">
+                    <img :src="cardImage" :alt="nameProduct" @load="loadImage">                
+                </figure>
             </div>    
         </RouterLink>
         <div 
@@ -20,7 +22,9 @@
             v-else
         >
             <button class="quick-view" @click="openModal">Быстрый просмотр</button>
-            <img :src="cardImage" :alt="nameProduct">                
+            <figure class="image" :class="{ 'is-skeleton': isLoading }">
+                <img :src="cardImage" :alt="nameProduct" @load="loadImage">                
+            </figure>            
         </div> 
         <RouterLink :to="'/assortment/' + id" @click="store.openPosition = true">        
             <div class="card__content">            
@@ -62,6 +66,7 @@ export default {
             store,
             animated: false,
             isMobile: false,
+            isLoading: true,
         }
     },
     props: {
@@ -91,10 +96,16 @@ export default {
         mobileHandler() {
             return window.innerWidth <= 1023 ? this.isMobile = true : this.isMobile = false;            
         },
+        loadImage() {
+            this.isLoading = false;
+        }
     },
     mounted() {
         this.mobileHandler();
         window.addEventListener('resize', this.mobileHandler);
+        // setTimeout(() => {
+        //    this.isLoading = false;                
+        // }, 2000);
     },
     unmounted() {
         window.removeEventListener('resize', this.mobileHandler);        
@@ -150,6 +161,10 @@ export default {
         // background-position-y: 0%;
         // background-size: 95.45px;
         // background-repeat: no-repeat; 
+
+        figure {
+            border-radius: 16px;
+        }
 
         img {
             position: relative;

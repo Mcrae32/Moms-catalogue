@@ -2,6 +2,11 @@
   import { RouterLink } from 'vue-router';
 
   export default {    
+    data() {
+      return {
+        isLoading: true,
+      }
+    },
     emits: ['close-modal'],
     props: {
       stateModal: { type: Boolean, required: true, },
@@ -21,7 +26,10 @@
       goToPosition() {
         this.$router.push('/assortment' + '/' + this.id);
         this.$emit('close-modal');        
-      },      
+      },  
+      loadImage() {
+        this.isLoading = false;
+      },    
     }
 };
 </script>
@@ -36,8 +44,13 @@
     <div class="modal-card fadeIn" :class="animated ? 'active' : ''">
       <header class="modal-card-head">
         <div class="modal-card-head__slider">
-          <!-- <img src="../assets/images/assortment/1/1-1.jpg" alt="Название позиции"> -->
-           <img :src="reviewsImage" alt="Название позиции">
+          <figure class="image is-1by1" :class="{ 'is-skeleton': isLoading }">
+            <img 
+              :src="reviewsImage" 
+              alt="Название позиции"
+              @load="loadImage"
+              >
+          </figure>          
         </div>
         <div class="modal-card-head__text">
           <div class="modal-card-head__right-block">
@@ -96,6 +109,7 @@
   }
   .modal-background {
     background-color: #00000030;
+    height: 100dvh;
     // transition: all 0.5s ease-in-out 0.5s;
   }
 

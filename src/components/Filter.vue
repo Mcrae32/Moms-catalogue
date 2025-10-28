@@ -56,6 +56,7 @@
             gap: 8px;
             font-weight: 600;
             font-size: 12px;
+            line-height: 1;
             text-align: left;
             color: #b0b0b0;
             height: 62px;
@@ -82,7 +83,7 @@
             @media (max-width: 599px) {
                 flex-direction: column;
                 width: 60px;
-                height: 96px;
+                height: 94px;
                 gap: 3px;
                 font-size: 9px;
                 text-align: center;
