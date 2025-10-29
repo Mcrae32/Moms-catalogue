@@ -13,25 +13,25 @@
     <div class="content__product-reviews product-reviews" :class="{ 'swiped': isSwiped }">
       <div class="product-reviews__column">
         <div>
-          <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
+          <h1 :class="{ 'is-skeleton': isLoading }">{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
           <!-- <p class="product-reviews__weight">{{ productItem.weight }} г</p> -->
           <div
             class="product-reviews-price product-price"
             :class="productItem.actionPrice ? 'price-action' : ''"
           >
-            <p class="product-price__price">{{ productItem.cardPrice }} ₽</p>
+            <p class="product-price__price" :class="{ 'is-skeleton': isLoading }">{{ productItem.cardPrice }} ₽</p>
             <span v-if="productItem.actionPrice" class="product-reviews__subprice">Акция</span>
           </div>
           <div class="product-reviews__text product-text">
             <div class="product-text__block">
               <h3>Описание</h3>
-              <p v-for="(item, idx) in productItem.productReviews">
+              <p v-for="(item, idx) in productItem.productReviews" :class="{ 'is-skeleton': isLoading }">
                 {{ item }}
               </p>
             </div>
             <div class="product-text__block">
               <h3>Состав</h3>
-              <p>{{ productItem.cardReviews }}</p>
+              <p :class="{ 'is-skeleton': isLoading }">{{ productItem.cardReviews }}</p>
             </div>
             <div class="product-text__block">
               <h3>Годен</h3>
@@ -39,16 +39,16 @@
             </div>
             <div class="product-text__block">
               <h3>Вес/объем</h3>
-              <p>{{ productItem.weight }} г</p>
+              <p :class="{ 'is-skeleton': isLoading }">{{ productItem.weight }} г</p>
             </div>
             <div class="product-text__block">
               <h3>Условия хранения</h3>
-              <p>{{ productItem.storageСonditions }}</p>
+              <p :class="{ 'is-skeleton': isLoading }">{{ productItem.storageСonditions }}</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="product-reviews__column product-reviews__column_slider">
+      <div class="product-reviews__column product-reviews__column_slider" :class="{ 'is-skeleton': isLoading }">
         <PageSlider
           :photosProduct="productItem.reviewsPhotosProduct"
           @swiped-down="handleSwipeDown"
@@ -77,6 +77,7 @@ export default {
       winWidth: window.innerWidth,
       isSwiped: false,
       animated: true,
+      pageHeight: 0,
     }
   },
   props: ['productId'],
@@ -128,12 +129,23 @@ export default {
           this.animated = !this.animated;                
       }, 700);       
     },
+
+    // updatePageHeight() {
+    //   const containerHeight = this.$refs.page.clientHeight;
+    //   this.pageHeight = containerHeight;
+    // },
   },
   mounted() {
     window.onresize = () => {
       this.winWidth = window.innerWidth
-    };      
+    };     
+    // this.updatePageHeight();
+    // window.addEventListener('resize', this.updatePageHeight);
+    // console.log("pageHeight - ", this.pageHeight);
   },
+  // beforeDestroy() {
+  //   window.removeEventListener('resize', this.updatePageHeight);
+  // },
 }
 </script>
 
@@ -196,6 +208,13 @@ export default {
           transition: transform 0.48s ease-in-out;
         }      
     }    
+
+    .product-reviews__column {
+
+      @media (max-width: 1150px) {
+        width: 100%;
+      }
+    }
 
     h1 {
       font-size: 2em;
@@ -279,7 +298,8 @@ export default {
 
     @media (max-width: 1023px) {
       // height: calc(100vh - 340px);     
-      height: calc(100dvh - ($heightImageSlider + 20px));                
+      height: calc(100dvh - ($heightImageSlider + 20px));        
+      width: 100%;        
     }
 
     @media (max-height: 699px) {
@@ -295,6 +315,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.1882352941);
     z-index: 1;
     display: none;
+    height: 100%;
 
     @media (max-width: 1023px) {
       display: block;

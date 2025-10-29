@@ -127,9 +127,11 @@ body {
     color: var(--color-black-70);        
     font-size: 16px; font-weight: normal;
 
-    &:has(.product-reviews) {
-        height: 100dvh;
-        overflow: hidden;
+    @media (max-width: 1023px) {
+        &:has(.product-reviews) {
+            height: 100dvh;
+            overflow: hidden;
+        }
     }
 }
 
@@ -342,4 +344,9 @@ body {
 }
 .showIn.active {
     opacity: 1;
+}
+
+.image.is-skeleton {
+    width: 100%;
+    height: 100%;
 }

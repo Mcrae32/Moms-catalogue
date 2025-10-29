@@ -28,14 +28,26 @@
         </div> 
         <RouterLink :to="'/assortment/' + id" @click="store.openPosition = true">        
             <div class="card__content">            
-                <p class="card__title">{{ nameProduct }}</p>
+                <p 
+                    class="card__title" 
+                    :class="{ 'is-skeleton': isLoading }"
+                >{{ nameProduct }}</p>
                 <div class="card__info">
-                    <p class="card__weight">{{ weight }} г</p>
-                    <p class="card__reviews">{{ cardReviews }}</p>
+                    <p 
+                        class="card__weight" 
+                        :class="{ 'is-skeleton': isLoading }"
+                    >{{ weight }} г</p>
+                    <p 
+                        class="card__reviews" 
+                        :class="{ 'is-skeleton': isLoading }"
+                    >{{ cardReviews }}</p>
                 </div>
                 <div class="card__footer">
                     <div class="card__price-wrap">
-                        <span class="card__price" :class="actionPrice ? 'action' : ''">{{ cardPrice }} &nbsp;₽</span>
+                        <span 
+                            class="card__price" 
+                            :class="actionPrice ? 'action' : ''"
+                        >{{ cardPrice }} &nbsp;₽</span>
                         <span v-if="actionPrice" class="product-price__subprice">Акция</span>
                     </div>
                     <button class="card__button"></button>
@@ -55,6 +67,9 @@
         :actionPrice="actionPrice"
         :animated="animated"
         :reviewsImage="reviewsImage"
+        :productReviews="productReviews"
+        :expiration_date="expirationDate"
+        :storageСonditions="storageСonditions"
     />
 </template>
 
@@ -79,6 +94,9 @@ export default {
         modalState: { type: Boolean, required: true, },
         actionPrice: { type: Boolean },
         reviewsImage: { type: String },
+        productReviews: { type: Array },
+        expirationDate: { type: String },
+        storageСonditions: { type: String },
     },
     methods: {
         openModal(id) {

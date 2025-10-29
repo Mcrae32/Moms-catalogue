@@ -37,7 +37,10 @@
               :cardImage="product.cardImage"
               :modalState="product.modalState"  
               :actionPrice="product.actionPrice"  
-              :reviewsImage="product.reviewsPhotosProduct[0]"                     
+              :reviewsImage="product.reviewsPhotosProduct[0]"
+              :productReviews="product.productReviews" 
+              :expirationDate="product.expirationDate"
+              :storageСonditions="product.storageСonditions"            
             ></product-card>
           </div>
         </div>

@@ -1,39 +1,3 @@
-<script>
-  import { RouterLink } from 'vue-router';
-
-  export default {    
-    data() {
-      return {
-        isLoading: true,
-      }
-    },
-    emits: ['close-modal'],
-    props: {
-      stateModal: { type: Boolean, required: true, },
-      id: { type: Number, },
-      name: { type: String, },
-      weight: { type: Number, },
-      price: { type: Number, },
-      reviews: { type: String, },
-      actionPrice: { type: Boolean },
-      animated: { type: Boolean },
-      reviewsImage: { type: String },
-    },
-    components: {
-      RouterLink
-    },
-    methods: {
-      goToPosition() {
-        this.$router.push('/assortment' + '/' + this.id);
-        this.$emit('close-modal');        
-      },  
-      loadImage() {
-        this.isLoading = false;
-      },    
-    }
-};
-</script>
-
 <template>
   <div 
     v-if="stateModal"
@@ -44,7 +8,7 @@
     <div class="modal-card fadeIn" :class="animated ? 'active' : ''">
       <header class="modal-card-head">
         <div class="modal-card-head__slider">
-          <figure class="image is-1by1" :class="{ 'is-skeleton': isLoading }">
+          <figure class="image is-1by1" :class="{ 'is-skeleton': isLoadingImg }">
             <img 
               :src="reviewsImage" 
               alt="Название позиции"
@@ -77,28 +41,75 @@
       <section class="modal-card-body reviews">
         <div class="reviews__block">
           <h6>Описание</h6>
-          <p>{{ reviews }}</p>
+          <p 
+            v-for="(item, idx) in productReviews"
+          >{{ item }}</p>
         </div>
         <div class="reviews__block">
           <h6>Состав</h6>
-          <p>Свинина, говядина, курица или даже дичь.</p>
+          <p>{{ reviews }}</p>
         </div>
         <div class="reviews__block">
           <h6>Годен</h6>
-          <p>10 суток</p>
+          <p>{{ expiration_date }}</p>
         </div>
         <div class="reviews__block">
           <h6>Вес/объем</h6>
-          <p>250 - 500 г</p>
+          <p>{{ weight }} г</p>
         </div>
         <div class="reviews__block">
           <h6>Условия хранения</h6>
-          <p>Хранить при температуре от 2.0 °С до 6.0 °С</p>
+          <p>{{ storageСonditions }}</p>
         </div>
       </section>      
     </div>
   </div>
 </template>
+
+<script>
+  import { RouterLink } from 'vue-router';
+
+  export default {    
+    data() {
+      return {
+        isLoadingImg: true,
+      }
+    },
+    emits: ['close-modal'],
+    props: {
+      stateModal: { type: Boolean, required: true, },
+      id: { type: Number, },
+      name: { type: String, },
+      weight: { type: Number, },
+      price: { type: Number, },
+      reviews: { type: String, },
+      actionPrice: { type: Boolean },
+      animated: { type: Boolean },
+      reviewsImage: { type: String },
+      productReviews: { type: Array },
+      expiration_date: { type: String },
+      storageСonditions: { type: String },
+    },
+    components: {
+      RouterLink
+    },
+    methods: {
+      goToPosition() {
+        this.$router.push('/assortment' + '/' + this.id);
+        this.$emit('close-modal');        
+      },  
+      loadImage() {
+        this.isLoadingImg = false;
+        // console.log("height page -", this.$refs.page.clientHeight);
+      },          
+    },
+    // computed: {
+    //   isEmpty() {
+    //     return this.name.trim() === '';
+    //   }
+    // }
+};
+</script>
 
 <style lang="scss" scoped>
   .modal {

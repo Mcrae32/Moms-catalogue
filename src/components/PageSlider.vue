@@ -25,12 +25,12 @@
                 class="mySwiper2"
             >
                 <swiper-slide
-                    v-for="(photo, i) in photosProduct" :key="i"
-                    :class="{ 'is-skeleton': isLoading }"
+                    v-for="(photo, i) in photosProduct" :key="i"                    
                 ><img 
                     :src="photo" 
                     alt=""
                     @load="loadImage"
+                    :class="{ 'is-skeleton': isLoading }"
                 >
                 </swiper-slide>
                 
@@ -52,7 +52,7 @@
             >
             <swiper-slide
                     v-for="(photo, i) in photosProduct" :key="i"
-                ><img :src="photo" alt="">
+                ><img :src="photo" alt="" @load="loadImage" :class="{ 'is-skeleton': isLoading }">
                 </swiper-slide>                
             </swiper>
         </div>
