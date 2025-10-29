@@ -13,25 +13,25 @@
     <div class="content__product-reviews product-reviews" :class="{ 'swiped': isSwiped }">
       <div class="product-reviews__column">
         <div>
-          <h1 :class="{ 'is-skeleton': isLoading }">{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
+          <h1>{{ productItem.nameProduct }}, {{ productItem.weight }} г</h1>      
           <!-- <p class="product-reviews__weight">{{ productItem.weight }} г</p> -->
           <div
             class="product-reviews-price product-price"
             :class="productItem.actionPrice ? 'price-action' : ''"
           >
-            <p class="product-price__price" :class="{ 'is-skeleton': isLoading }">{{ productItem.cardPrice }} ₽</p>
+            <p class="product-price__price">{{ productItem.cardPrice }} ₽</p>
             <span v-if="productItem.actionPrice" class="product-reviews__subprice">Акция</span>
           </div>
           <div class="product-reviews__text product-text">
             <div class="product-text__block">
               <h3>Описание</h3>
-              <p v-for="(item, idx) in productItem.productReviews" :class="{ 'is-skeleton': isLoading }">
+              <p v-for="(item, idx) in productItem.productReviews">
                 {{ item }}
               </p>
             </div>
             <div class="product-text__block">
               <h3>Состав</h3>
-              <p :class="{ 'is-skeleton': isLoading }">{{ productItem.cardReviews }}</p>
+              <p>{{ productItem.cardReviews }}</p>
             </div>
             <div class="product-text__block">
               <h3>Годен</h3>
@@ -39,16 +39,16 @@
             </div>
             <div class="product-text__block">
               <h3>Вес/объем</h3>
-              <p :class="{ 'is-skeleton': isLoading }">{{ productItem.weight }} г</p>
+              <p>{{ productItem.weight }} г</p>
             </div>
             <div class="product-text__block">
               <h3>Условия хранения</h3>
-              <p :class="{ 'is-skeleton': isLoading }">{{ productItem.storageСonditions }}</p>
+              <p>{{ productItem.storageСonditions }}</p>
             </div>
           </div>
         </div>
       </div>
-      <div class="product-reviews__column product-reviews__column_slider" :class="{ 'is-skeleton': isLoading }">
+      <div class="product-reviews__column product-reviews__column_slider">
         <PageSlider
           :photosProduct="productItem.reviewsPhotosProduct"
           @swiped-down="handleSwipeDown"
